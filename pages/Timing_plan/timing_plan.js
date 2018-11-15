@@ -57,6 +57,7 @@ Page({
             }],
         selected_num: 0,
         all_selected: false,
+        not_data_txt:"暂无定时计划"
     },
     /**
      * 点击单选按钮
@@ -129,10 +130,25 @@ Page({
         })
     },
     /**
+     * 无数据时点击立即添加
+     */
+    linkAddPlan:function(){
+        wx.navigateTo({
+            url: '/pages/add_plan/plan',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    },
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {  
-
+        var that = this;
+        var listsLen = that.data.lists.length;
+        that.setData({
+            listsLen: listsLen
+        })
     },
 
     /**

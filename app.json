@@ -1,15 +1,16 @@
 {
     "pages": [
+        "pages/login/login",
         "pages/index/index",
         "pages/pie/index",
-        "pages/login/login",
         "pages/muchOpen/open",
         "pages/add_plan/plan",
         "pages/selected_floor/floor",
         "pages/selected_region/region",
         "pages/selected_week/week",
         "pages/Timing_plan/timing_plan",
-        "pages/Line_tester/LineTester"
+        "pages/Line_tester/LineTester",
+        "pages/muchClose/close"
     ],
     "window": {
         "backgroundTextStyle": "light",

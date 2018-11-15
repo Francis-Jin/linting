@@ -11,7 +11,7 @@
             <image src='/pages/icon/phone_icon.png'></image>
             <input type='number' bindblur='blurPhone' placeholder='请输入手机号' value='{{phoneVal}}'/>
         </view>
-        <view class='btn_login'>
+        <view class='btn_login' bindtap='submit'>
             <text>提交</text>
         </view>
     </view>

@@ -23,7 +23,7 @@ Page({
         }],
         selected_num: 0,
         all_selected: false,
-        tab_val: 1,
+        tab_val: 0,
         selected_floor: "",
         selected_region: "",
         textarea_num: 0,

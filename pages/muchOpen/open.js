@@ -8,7 +8,28 @@ Page({
         selected_floor:"一楼，二楼，三楼，四楼，五楼,一楼，二楼，三楼，四楼，五楼",
         selected_region:"图书室，公共区域"
     },
-
+    /**
+     * 跳转选择楼层
+     */
+    linkSelectedFloor:function(){
+        wx.navigateTo({
+            url: '/pages/selected_floor/floor',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    },
+    /**
+     * 跳转到选择区域
+     */
+    linkSelectedRegion:function(){
+        wx.navigateTo({
+            url: '/pages/selected_region/region',
+            success: function (res) { },
+            fail: function (res) { },
+            complete: function (res) { },
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

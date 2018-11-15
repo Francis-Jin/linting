@@ -1,4 +1,4 @@
-<!--pages/Timing_plan/timing_plan.wxml-->
+<!--pages/muchClose/close.wxml-->
 <view class='all-bg-img'>
     <image src='/pages/icon/bg.png'></image>
 </view>
@@ -7,7 +7,7 @@
         <view class='init' wx:key="index" wx:for="{{lists}}">
             <view class='sub_con line' id="{{index}}" bindtap='clickSelected'>
                 <view class='l'>
-                    <text class='week'>{{item.title}}</text>
+
                     <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
                     <label class='{{item.checked == true ? "checked" : ""}}'></label>
                 </view>
@@ -18,26 +18,21 @@
                     <text>{{item.floor}}</text>
                 </view>
                 <view class='r'>
-                    <text>开灯时间：</text>
-                    <text>{{item.open_time}}</text>
-                </view>
-            </view>
-            <view class='sub_con'>
-                <view class='l'>
                     <text>区域：</text>
                     <text>{{item.region}}</text>
                 </view>
+            </view>
+            <view class='sub_con bottom_bj'>
+                <view class='l'>
+                    <text class='week'>开关</text>
+                </view>
                 <view class='r'>
-                    <text>关灯时间：</text>
-                    <text>{{item.close_time}}</text>
+                    <switch color='#404B81' checked="{{item.openCloseStatus}}" data-id="{{index}}" bindchange="switchChange"></switch>
                 </view>
             </view>
         </view>
         <view class='footer_height'></view>
     </view>
-</view>
-<view class='right_fixed' bindtap='linkAddTimingPlan'>
-    <image src='/pages/icon/right_fixed.png'></image>
 </view>
 <view class='footer_fixed'>
     <view class='l'>
@@ -55,7 +50,7 @@
         </view>
     </view>
     <view class='r'>
-        <text>删除</text>
+        <text>多关</text>
     </view>
 </view>
 
@@ -66,8 +61,5 @@
     </view>
     <view class='contxt'>
         <text>{{not_data_txt}}</text>
-    </view>
-    <view class='ms' bindtap='linkAddPlan'>
-        <text>立即添加</text>
     </view>
 </view>

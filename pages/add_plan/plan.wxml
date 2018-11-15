@@ -63,7 +63,7 @@
             <image src='/pages/icon/right.png'></image>
         </view>
     </view>
-    <view class='submit'>
+    <view class='submit' bindtap='linkTimingPlan'>
         <text>提交</text>
     </view>
 </view>

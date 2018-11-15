@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -95,7 +95,13 @@
 				{
 					"id": -1,
 					"name": "线路测试员",
-					"pathName": "pages/Line_tester/LineTester"
+					"pathName": "pages/Line_tester/LineTester",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "多关",
+					"pathName": "pages/muchClose/close"
 				}
 			]
 		}

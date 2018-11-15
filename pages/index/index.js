@@ -116,14 +116,20 @@ Page({
      * 点击多开
      */
     muchOpen:function(){
-        wx.showModal({
-            title: '',
-            content: '确认打开此区域的照明灯？',
-            showCancel: true,
-            cancelText: '取消',
-            cancelColor: '#666666',
-            confirmText: '确认',
-            confirmColor: '#404B81',
+        // wx.showModal({
+        //     title: '',
+        //     content: '确认打开此区域的照明灯？',
+        //     showCancel: true,
+        //     cancelText: '取消',
+        //     cancelColor: '#666666',
+        //     confirmText: '确认',
+        //     confirmColor: '#404B81',
+        //     success: function(res) {},
+        //     fail: function(res) {},
+        //     complete: function(res) {},
+        // })
+        wx.navigateTo({
+            url: '/pages/muchOpen/open',
             success: function(res) {},
             fail: function(res) {},
             complete: function(res) {},
@@ -133,17 +139,34 @@ Page({
     * 点击多关
     */
     muchClose: function () {
-        wx.showModal({
-            title: '',
-            content: '确认关闭此区域的照明灯？',
-            showCancel: true,
-            cancelText: '取消',
-            cancelColor: '#666666',
-            confirmText: '确认',
-            confirmColor: '#404B81',
-            success: function (res) { },
-            fail: function (res) { },
-            complete: function (res) { },
+        // wx.showModal({
+        //     title: '',
+        //     content: '确认关闭此区域的照明灯？',
+        //     showCancel: true,
+        //     cancelText: '取消',
+        //     cancelColor: '#666666',
+        //     confirmText: '确认',
+        //     confirmColor: '#404B81',
+        //     success: function (res) { },
+        //     fail: function (res) { },
+        //     complete: function (res) { },
+        // })
+        wx.navigateTo({
+            url: '/pages/muchClose/close',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    },
+    /**
+     * 跳转到定时计划
+     */
+    linkTimingPlan:function(){
+        wx.navigateTo({
+            url: '/pages/Timing_plan/timing_plan',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
         })
     },
     /**

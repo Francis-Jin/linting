@@ -23,7 +23,7 @@
                 <text>多关</text>
             </view>
         </view>
-        <view class='item'>
+        <view class='item' bindtap='linkTimingPlan'>
             <view class='top-icon'>
                 <image src='/pages/icon/dinshi.png'></image>
             </view>

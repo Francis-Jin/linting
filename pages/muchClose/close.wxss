@@ -1,18 +1,61 @@
-/* pages/Timing_plan/timing_plan.wxss */
-
+/* pages/muchClose/close.wxss */
 .content-wrap {
-    width: 94%;
+    width: 100%;
+    margin-top: 60rpx;
+    margin-bottom: 120rpx;
+    position: relative;
+}
+
+.content-wrap .page_title {
+    text-indent: 3%;
+    color: #fff;
+}
+
+.selected_tab_wrap {
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    display: flex;
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+    background: #404B81;
+}
+
+.selected_tab_wrap .left_tab, .selected_tab_wrap .right_tab {
+    width: 50%;
+    color: #fff;
+}
+
+.selected_tab_wrap .left_tab text, .selected_tab_wrap .right_tab text {
+    font-size: 34rpx;
+    position: relative;
+}
+
+.selected_tab_wrap .left_tab.active text::after,
+.selected_tab_wrap .right_tab.active text::after {
+    content: "";
+    display: block;
     position: absolute;
-    left: 3%;
-    top: 60rpx;
+    left: 0;
+    bottom: -14rpx;
+    width: 100%;
+    height: 4rpx;
+    background: #fff;
+}
+
+.content-wrap .page_title text {
+    font-size: 36rpx;
 }
 
 .content-wrap .init {
-    width: 100%;
-    height: 260rpx;
+    width: 94%;
+    margin: 0 auto 20rpx;
+    height: 258rpx;
     background: #fff;
     border-radius: 10rpx;
-    margin-bottom: 20rpx;
 }
 
 .content-wrap .init .sub_con {
@@ -28,7 +71,27 @@
     height: 90rpx;
     line-height: 90rpx;
 }
-
+.content-wrap .init .sub_con.bottom_bj{
+    height: 100rpx;
+    line-height: 100rpx;
+    position: relative;
+    background: #F2FCFA;
+}
+.content-wrap .init .sub_con.bottom_bj::after,
+.content-wrap .init .sub_con.bottom_bj::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 5.5%;
+    height: 100%;
+    background: #F2FCFA;
+}
+.content-wrap .init .sub_con.bottom_bj::after{
+    right: -5.5%;
+}
+.content-wrap .init .sub_con.bottom_bj::before{
+    left: -5.5%;
+}
 .content-wrap .init .sub_con.line .l .week {
     display: inline-block;
     text-indent: 70rpx;
@@ -111,20 +174,6 @@ label.checked::after {
     text-align: right;
 }
 
-.right_fixed {
-    position: fixed;
-    right: 30rpx;
-    bottom: 200rpx;
-    width: 110rpx;
-    height: 110rpx;
-    z-index: 3;
-}
-
-.right_fixed image {
-    width: 110rpx;
-    height: 110rpx;
-}
-
 .footer_fixed {
     position: fixed;
     left: 0;
@@ -161,22 +210,6 @@ label.checked::after {
 
 .footer_fixed .l .selected_num .num {
     color: #fba087;
-}
-
-.not_data .ms {
-    text-align: center;
-    margin-top: 80rpx;
-}
-
-.not_data .ms text {
-    display: inline-block;
-    width: 240rpx;
-    height: 90rpx;
-    line-height: 90rpx;
-    background: rgba(64, 75, 129, 1);
-    border-radius: 46rpx;
-    color: #fff;
-    font-size: 32rpx;
 }
 .footer_height{
     width: 100%;

@@ -3,7 +3,7 @@
     <image src='/pages/icon/bg.png'></image>
 </view>
 <view class='content'>
-    <view class='item'>
+    <view class='item' bindtap='linkSelectedFloor'>
         <view class='left'>
             <text>楼层</text>
         </view>
@@ -14,7 +14,7 @@
             <image src='/pages/icon/right.png'></image>
         </view>
     </view>
-    <view class='item'>
+    <view class='item' bindtap='linkSelectedRegion'>
         <view class='left'>
             <text>区域</text>
         </view>
