@@ -10,7 +10,7 @@
         </view>
         <view class='init'>
             <view class='number'>{{region_number}}</view>
-            <view>总灯数</view>
+            <view>开灯区域</view>
         </view>
     </view>
 </view>
