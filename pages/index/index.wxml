@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<view class='all-bg-img'>
+    <image src='/pages/icon/bg.png'></image>
+</view>
+<view class='header-wrap'>
+    <view class='header_title'>
+        <text>您好，工程管理员</text>
+    </view>
+    <view class='top_header'>
+        <view class='item' bindtap='muchOpen'>
+            <view class='top-icon'>
+                <image src='/pages/icon/duokai.png '></image>
+            </view>
+            <view class='bottom-txt'>
+                <text>多开</text>
+            </view>
+        </view>
+        <view class='item' bindtap='muchClose'>
+            <view class='top-icon'>
+                <image src='/pages/icon/dankai.png'></image>
+            </view>
+            <view class='bottom-txt'>
+                <text>多关</text>
+            </view>
+        </view>
+        <view class='item'>
+            <view class='top-icon'>
+                <image src='/pages/icon/dinshi.png'></image>
+            </view>
+            <view class='bottom-txt'>
+                <text>定时计划</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='content'>
+    <view class='floor-wrap'  wx:key="index" wx:for="{{lists}}">
+        <view class='floor-title'>
+            <text>{{item.title}}</text>
+        </view>
+        <view class='floor-lists'>
+            <view class='init' wx:key="index" wx:for="{{item.subLists}}" id="{{item.id}}" bindtap='clickSwitchLight'>
+                <view class='icon'>
+                    <image wx:if="{{item.status == false}}" src='/pages/icon/not.png'></image>
+                    <image wx:if="{{item.status == true}}" src='/pages/icon/yes.png'></image>
+                </view>
+                <view class='init-txt'>
+                    <text>{{item.name}}</text>
+                </view>
+            </view>
+            <view class='down-more'>
+                <image src='/pages/icon/down.png'></image>
+            </view>
+        </view>
+    </view>
+</view>

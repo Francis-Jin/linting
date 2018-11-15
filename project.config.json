@@ -1,0 +1,103 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"uglifyFileName": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.0",
+	"appid": "wxd2be89a591653ed0",
+	"projectname": "%E7%85%A7%E6%98%8E",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 9,
+			"list": [
+				{
+					"id": 0,
+					"name": "照明首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "图表",
+					"pathName": "pages/pie/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "多开",
+					"pathName": "pages/muchOpen/open",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "计划新增",
+					"pathName": "pages/add_plan/plan",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "楼层选择",
+					"pathName": "pages/selected_floor/floor",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "区域选择",
+					"pathName": "pages/selected_region/region",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "工作日选择",
+					"pathName": "pages/selected_week/week",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "定时计划",
+					"pathName": "pages/Timing_plan/timing_plan",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "线路测试员",
+					"pathName": "pages/Line_tester/LineTester"
+				}
+			]
+		}
+	}
+}

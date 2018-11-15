@@ -1,0 +1,495 @@
+/* pages/Line_tester/LineTester.wxss */
+
+.content-wrap {
+    width: 100%;
+    margin-bottom: 120rpx;
+    position: relative;
+}
+
+.content-wrap .page_title {
+    text-indent: 3%;
+    color: #fff;
+}
+
+.selected_tab_wrap {
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    display: flex;
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+    background: #404B81;
+}
+
+.selected_tab_wrap .left_tab, .selected_tab_wrap .right_tab {
+    width: 50%;
+    color: #fff;
+}
+
+.selected_tab_wrap .left_tab text, .selected_tab_wrap .right_tab text {
+    font-size: 34rpx;
+    position: relative;
+}
+
+.selected_tab_wrap .left_tab.active text::after,
+.selected_tab_wrap .right_tab.active text::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -14rpx;
+    width: 100%;
+    height: 4rpx;
+    background: #fff;
+}
+
+.content-wrap .page_title text {
+    font-size: 36rpx;
+}
+
+.content-wrap .init {
+    width: 94%;
+    margin: 0 auto 20rpx;
+    height: 326rpx;
+    background: #fff;
+    border-radius: 10rpx;
+}
+
+.content-wrap .init .sub_con {
+    width: 90%;
+    margin: 0 auto;
+    height: 70rpx;
+    line-height: 70rpx;
+    display: flex;
+}
+
+.content-wrap .init .sub_con.line {
+    position: relative;
+    height: 90rpx;
+    line-height: 90rpx;
+}
+.content-wrap .init .sub_con.bottom_bj{
+    height: 100rpx;
+    line-height: 100rpx;
+    position: relative;
+    background: #F2FCFA;
+}
+.content-wrap .init .sub_con.bottom_bj::after,
+.content-wrap .init .sub_con.bottom_bj::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 6%;
+    height: 100%;
+    background: #F2FCFA;
+}
+.content-wrap .init .sub_con.bottom_bj::after{
+    right: -6%;
+}
+.content-wrap .init .sub_con.bottom_bj::before{
+    left: -6%;
+}
+.content-wrap .init .sub_con.line .l .week {
+    display: inline-block;
+    text-indent: 70rpx;
+}
+
+.check {
+    /* background: green; */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* background: green; */
+    opacity: 0;
+    filter: alpha(opacity(0));
+    z-index: 2;
+}
+
+.check+label {
+    position: absolute;
+    left: 0;
+    top: 22rpx;
+    width: 46rpx;
+    height: 46rpx;
+    border-radius: 100%;
+    border: 1rpx solid #c9c9c9;
+}
+
+.check.all {
+    width: 60%;
+}
+
+.check.all+label {
+    left: 7%;
+    top: 30rpx;
+}
+
+.all_selected_text {
+    display: inline-block;
+    text-indent: 80rpx;
+}
+
+label.checked {
+    border-color: transparent;
+    background: #404b81;
+}
+
+label.checked::after {
+    content: "";
+    position: absolute;
+    left: 6rpx;
+    top: 8rpx;
+    width: 30rpx;
+    height: 14rpx;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
+    -moz-transform: rotate(-50deg);
+    -webkit-transform: rotate(-50deg);
+}
+
+.content-wrap .init .sub_con.line::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -5%;
+    bottom: 1rpx;
+    width: 110%;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.content-wrap .init .sub_con .l {
+    width: 50%;
+}
+
+.content-wrap .init .sub_con .r {
+    width: 50%;
+    text-align: right;
+}
+
+.footer_fixed {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 110rpx;
+    line-height: 110rpx;
+    width: 100%;
+    background: #fff;
+    display: flex;
+}
+
+.footer_fixed .l {
+    width: 74%;
+    display: flex;
+}
+
+.footer_fixed .r {
+    width: 26%;
+    background: #404b81;
+    text-align: center;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.footer_fixed .l .selected_all {
+    width: 40%;
+    text-align: center;
+}
+
+.footer_fixed .l .selected_num {
+    width: 50%;
+    text-align: right;
+}
+
+.footer_fixed .l .selected_num .num {
+    color: #fba087;
+}
+
+/* 测试信息记录 */
+
+.content {
+    width: 94%;
+    margin: 0 auto;
+    /* min-height: 996rpx; */
+    background: #fff;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding-top: 37rpx;
+    padding-bottom: 50rpx;
+}
+
+.item {
+    display: flex;
+    height: 120rpx;
+    line-height: 120rpx;
+    position: relative;
+}
+
+.item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 3%;
+    bottom: 1rpx;
+    width: 94%;
+    height: 1rpx;
+    background: #f2f2f2;
+}
+
+.item .left {
+    width: 30%;
+    text-indent: 30rpx;
+}
+
+.item .left text {
+    font-size: 30rpx;
+    color: #666;
+}
+
+.item .center {
+    width: 60%;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.item .centerInput {
+    width: 70%;
+}
+
+.item .centerInput input {
+    width: 90%;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: right;
+}
+
+.item .center text {
+    font-size: 30rpx;
+    color: #333;
+}
+
+.item .center input {
+    height: 120rpx;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.item .right {
+    width: 52rpx;
+    font-size: 0;
+}
+
+.item .right image {
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+    position: relative;
+    top: 4rpx;
+}
+
+.Remarks {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.Remarks .title {
+    padding: 38rpx 0 20rpx;
+    color: #666;
+}
+
+.Remarks .textarea_input {
+    height: 330rpx;
+    position: relative;
+}
+
+.Remarks .textarea_input::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -5%;
+    width: 110%;
+    bottom: 1rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.Remarks .textarea_input textarea {
+    width: 100%;
+    height: 260rpx;
+}
+
+.Remarks .textarea_input .number {
+    position: absolute;
+    right: 0;
+    bottom: 20rpx;
+    color: #999;
+}
+
+.submit {
+    margin: 0rpx auto;
+    width: 90%;
+    height: 90rpx;
+    line-height: 90rpx;
+    color: #fff;
+    background: #404b81;
+    border-radius: 48rpx;
+    text-align: center;
+    font-size: 28rpx;
+}
+
+/* 上传图片 */
+
+.uploadImg {
+    width: 100%;
+    color: #999;
+    padding-top: 34rpx;
+}
+
+.uploadImg image {
+    vertical-align: middle;
+}
+
+.uploade-img {
+    width: 100%;
+    padding: 0 0 34rpx;
+    font-size: 0;
+    position: relative;
+}
+
+.uploade-img::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.uploade-img .imgs, .uploade-img .btnUp {
+    float: left;
+    position: relative;
+    margin-left: 40rpx;
+    font-size: 0;
+}
+
+.uploade-img .imgs .delete {
+    position: absolute;
+    right: -6rpx;
+    top: -6rpx;
+    width: 40rpx;
+    height: 40rpx;
+    text-align: center;
+    line-height: 34rpx;
+    color: #fff;
+    font-size: 40rpx;
+    font-weight: 100;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.uploade-img .imgs image {
+    width: 170rpx;
+    height: 166rpx;
+    margin-bottom: 40rpx;
+}
+
+.uploade-img .btnUp image {
+    width: 170rpx;
+    height: 166rpx;
+    margin-right: 44rpx;
+}
+
+.btnUp text {
+    display: inline-block;
+    width: 200rpx;
+    vertical-align: middle;
+}
+
+.uploade-img .lookBigImg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+}
+
+.uploade-img .lookBigImg image {
+    width: 100%;
+    height: 600rpx;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -300rpx;
+}
+
+/* 菜单弹出层 */
+
+.menus-wrap {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: #000;
+    opacity: 0.2;
+    overflow: hidden;
+}
+
+.menus {
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+    background: #fff;
+}
+
+.menus .menu-cancel, .menus .menu-title {
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.menus .content {
+    margin-bottom: 20rpx;
+    max-height: 400rpx;
+    overflow-y: scroll;
+}
+
+.menus .content .init {
+    text-indent: 40rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.menus .content .init .status {
+    float: right;
+    margin-right: 20rpx;
+    display: none;
+}
+
+.menus .content .init.active .status {
+    display: block;
+}
+
+.menus .content .init .status image {
+    width: 76rpx;
+    height: 76rpx;
+    vertical-align: middle;
+}
+
+.menus .content .init:last-child {
+    border: none;
+}

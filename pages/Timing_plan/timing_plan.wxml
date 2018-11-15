@@ -1,0 +1,59 @@
+<!--pages/Timing_plan/timing_plan.wxml-->
+<view class='all-bg-img'>
+    <image src='/pages/icon/bg.png'></image>
+</view>
+<view class='content-wrap'>
+    <view class='lists'>
+        <view class='init' wx:key="index" wx:for="{{lists}}">
+            <view class='sub_con line' id="{{index}}" bindtap='clickSelected'>
+                <view class='l'>
+                    <text class='week'>{{item.title}}</text>
+                    <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
+                    <label class='{{item.checked == true ? "checked" : ""}}'></label>
+                </view>
+            </view>
+            <view class='sub_con'>
+                <view class='l'>
+                    <text>楼层：</text>
+                    <text>{{item.floor}}</text>
+                </view>
+                <view class='r'>
+                    <text>开灯时间：</text>
+                    <text>{{item.open_time}}</text>
+                </view>
+            </view>
+            <view class='sub_con'>
+                <view class='l'>
+                    <text>区域：</text>
+                    <text>{{item.region}}</text>
+                </view>
+                <view class='r'>
+                    <text>关灯时间：</text>
+                    <text>{{item.close_time}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='right_fixed' bindtap='linkAddTimingPlan'>
+    <image src='/pages/icon/right_fixed.png'></image>
+</view>
+<view class='footer_fixed'>
+    <view class='l'>
+        <view class='selected_all'>
+            <checkbox-group bindchange="checkboxAllChange">
+                <checkbox class='check all' color="#404B81" value='{{all_selected}}' checked='{{all_selected}}'></checkbox>
+                <label class='{{all_selected == true ? "checked" : ""}}'></label>
+                <text class='all_selected_text'>全选</text>
+            </checkbox-group>
+        </view>
+        <view class='selected_num'>
+            <text>已选择</text>
+            <text class='num'>{{selected_num}}</text>
+            <text>条</text>
+        </view>
+    </view>
+    <view class='r'>
+        <text>删除</text>
+    </view>
+</view>

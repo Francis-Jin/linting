@@ -1,0 +1,110 @@
+page{
+    background: #fff;
+}
+.header-wrap {
+    position: absolute;
+    left: 3%;
+    top: 0;
+    width: 94%;
+    z-index: 3;
+}
+
+.header_title {
+    color: #fff;
+    margin-bottom: 44rpx;
+    text-indent: 6rpx;
+}
+.header_title text{
+    font-size: 36rpx;
+}
+
+.header-wrap .top_header {
+    width: 100%;
+    height: 214rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    display: flex;
+    justify-content: center;
+    box-shadow:0 0 20rpx 0 rgba(0,0,0,0.29);
+}
+
+.header-wrap .item {
+    width: 33.34%;
+}
+
+.header-wrap .item .top-icon {
+    text-align: center;
+    padding-top: 34rpx;
+}
+
+.header-wrap .item image {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.header-wrap .item .bottom-txt {
+    text-align: center;
+}
+
+.header-wrap .item .bottom-txt text {
+    font-size: 30rpx;
+    color: #333;
+}
+.content{
+    width: 100%;
+    margin-top: 280rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    position: relative;
+    z-index: 2;
+    background: #fff;
+}
+.content .floor-wrap{
+    width: 100%;
+    margin: 48rpx auto;
+    box-shadow:0 26rpx 38rpx -14rpx rgba(0,0,0,0.11);
+}
+.content .floor-wrap .floor-title{
+    text-indent: 34rpx;
+    margin-bottom: 24rpx;
+}
+.content .floor-wrap .floor-title .text{
+    font-size: 34rpx;
+    color: #333;
+}
+.floor-lists{
+    width: 100%;
+    position: relative;
+    /* background: red; */
+    overflow: hidden;
+}
+.floor-lists .init{
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+.floor-lists .init .icon{
+    font-size: 0;
+}
+.floor-lists .init image{
+    width: 70rpx;
+    height: 70rpx;
+    margin: 28rpx 0 20rpx;
+}
+.floor-lists .init .init-txt text{
+    font-size: 30rpx;
+    color: #333;
+}
+.floor-lists .init .init-txt {
+    padding-bottom: 12rpx;
+}
+.floor-lists .down-more{
+    clear: both;
+    text-align: center;
+    font-size: 0;
+    padding: 32rpx 0;
+}
+.floor-lists .down-more image{
+    width: 52rpx;
+    height: 30rpx;
+}

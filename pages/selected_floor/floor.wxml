@@ -1,0 +1,21 @@
+<!--pages/selected_floor/floor.wxml-->
+<view class='all-bg-img'>
+    <image src='/pages/icon/bg.png'></image>
+</view>
+<view class='content'>
+    <view class='item' wx:key = "index" wx:for = "{{lists}}">
+        <view class='left'>
+            <text>{{item.name}}</text>
+        </view>
+        <view class='center'>
+            <!-- <text>{{selected_floor}}</text> -->
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/selected.png'></image>
+        </view>
+    </view>
+    
+</view>
+<view class='submit'>
+    <text>确定</text>
+</view>

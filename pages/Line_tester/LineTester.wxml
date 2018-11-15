@@ -1,0 +1,180 @@
+<!--pages/Line_tester/LineTester.wxml-->
+<!--pages/Timing_plan/timing_plan.wxml-->
+<view class='all-bg-img'>
+    <image src='/pages/icon/bg.png'></image>
+</view>
+<view class='content-wrap'>
+    <view class='page_title'>
+        <text>您好，线路测试员</text>
+    </view>
+    <view class='selected_tab_wrap'>
+        <view id='0' class='left_tab {{tab_val == 0 ? "active" : ""}}' bindtap='lineRecord'>
+            <text>线路信息记录</text>
+        </view>
+        <view id="1" class='right_tab {{tab_val == 1 ? "active" : ""}}' bindtap='submitRecord'>
+            <text>记录提交</text>
+        </view>
+    </view>
+    <!-- 记录提交部分 -->
+    <view hidden='{{tab_val == 1 ? false : true}}' class='lists'>
+        <view class='init' wx:key="index" wx:for="{{lists}}">
+            <view class='sub_con line' id="{{index}}" bindtap='clickSelected'>
+                <view class='l'>
+                    
+                    <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
+                    <label class='{{item.checked == true ? "checked" : ""}}'></label>
+                </view>
+            </view>
+            <view class='sub_con'>
+                <view class='l'>
+                    <text>楼层：</text>
+                    <text>{{item.floor}}</text>
+                </view>
+                <view class='r'>
+                    <text>开灯时间：</text>
+                    <text>{{item.open_time}}</text>
+                </view>
+            </view>
+            <view class='sub_con'>
+                <view class='l'>
+                    <text>区域：</text>
+                    <text>{{item.region}}</text>
+                </view>
+                <view class='r'>
+                    <text>关灯时间：</text>
+                    <text>{{item.close_time}}</text>
+                </view>
+            </view>
+            <view class='sub_con bottom_bj'>
+                <view class='l'>
+                    <text class='week'>{{item.title}}</text>
+                </view>
+                <view class='r'>
+                    <switch color='#404B81'></switch>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 线路信息记录部分 -->
+    <view hidden='{{tab_val == 0 ? false : true}}'>
+        <view class='content'>
+            <view class='item' data-statu="open" id="floor" bindtap='slectedFloor'>
+                <view class='left'>
+                    <text>楼层</text>
+                </view>
+                <view class='center'>
+                    <input placeholder='请选择' placeholder-style='color:#DADADC' value='{{selected_floor}}' />
+                </view>
+                <view class='right'>
+                    <image src='/pages/icon/right.png'></image>
+                </view>
+            </view>
+            <view class='item'>
+                <view class='left'>
+                    <text>主控器名称</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' />
+                </view>
+            </view>
+            <view class='item'>
+                <view class='left'>
+                    <text>线路名称</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' />
+                </view>
+            </view>
+            <view class='item' data-statu="open" id="region" bindtap='slectedRegion'>
+                <view class='left'>
+                    <text>区域</text>
+                </view>
+                <view class='center'>
+                    <input placeholder='请选择' placeholder-style='color:#DADADC' value='{{selected_region}}' />
+                </view>
+                <view class='right'>
+                    <image src='/pages/icon/right.png'></image>
+                </view>
+            </view>
+            <view class='item'>
+                <view class='left'>
+                    <text>照明灯数量</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' />
+                </view>
+            </view>
+            <view class='Remarks'>
+                <view class='title'>
+                    <text>备注</text>
+                </view>
+                <view class='textarea_input'>
+                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea>
+                    <view class='number'>
+                        <text>{{textarea_num}}</text>
+                        <text>/250</text>
+                    </view>
+                </view>
+            </view>
+            <view class='uploadImg'>
+                <view class='uploade-img'>
+                    <view class='imgs' wx:key="index" wx:for="{{avatarUrl}}">
+                        <image data-url='{{item}}' bindtap='lookThisImg' mode='aspectFit' src="{{item}}" style='box-sizing:border-box;border:1rpx dotted #f2f2f2;'></image>
+                        <view class='delete' wx:key="index" data-index='{{index}}' bindtap='deleteImg'>x</view>
+                    </view>
+                    <view class='btnUp' bindtap='uploadeImg'>
+                        <image src='/pages/icon/Group.png'></image>
+                        <text>点击上传照片 (最多上传6张)</text>
+                    </view>
+                    <!-- 点击图片后查看大图 -->
+                    <view hidden='{{showBig}}' class='lookBigImg' bindtap='hideThisShow'>
+                        <image mode='aspectFit' src='{{setThisImgUrl}}'></image>
+                    </view>
+                </view>
+            </view>
+            <view class='submit'>
+                <text>提交</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view hidden='{{tab_val == 1 ? false : true}}' class='footer_fixed'>
+    <view class='l'>
+        <view class='selected_all'>
+            <checkbox-group bindchange="checkboxAllChange">
+                <checkbox class='check all' color="#404B81" value='{{all_selected}}' checked='{{all_selected}}'></checkbox>
+                <label class='{{all_selected == true ? "checked" : ""}}'></label>
+                <text class='all_selected_text'>全选</text>
+            </checkbox-group>
+        </view>
+        <view class='selected_num'>
+            <text>已选择</text>
+            <text class='num'>{{selected_num}}</text>
+            <text>条</text>
+        </view>
+    </view>
+    <view class='r'>
+        <text>删除</text>
+    </view>
+</view>
+
+<!-- 菜单弹出层start -->
+    <view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang'></view>
+    <view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
+        <view class='menu-title whitebj'>
+            <text>{{menuTitle}}</text>
+        </view>
+        <!-- 不是选择日期显示 -->
+        <view class='content whitebj'>
+            <view class='init {{currentData == index ? "active" : ""}}' data-statu="close" wx:for="{{menuValLists}}" bindtap='clickMenuThisInit' data-content='{{item}}' wx:for-index="index" wx:key="index" data-index="{{index}}" id="{{selectId}}">
+                <text>{{item}}</text>
+                <view class='status'>
+                    <image src='/pages/icon/selected.png'></image>
+                </view>
+            </view>
+        </view>
+        <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
+            <text>取消</text>
+        </view>
+    </view>
+    <!-- 菜单弹出层end -->

@@ -1,0 +1,63 @@
+/* pages/login/login.wxss */
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 3%;
+    width: 94%;
+    height: 100%;
+}
+
+.content .title {
+    padding: 11rpx 0 70rpx;
+    text-indent: 40rpx;
+}
+
+.content .title text {
+    font-size: 50rpx;
+    color: #fff;
+}
+
+.content .submit-phone {
+    height: 570rpx;
+    width: 100%;
+    background: #fff;
+    border-radius: 10rpx;
+    position: relative;
+}
+
+.submit-phone .input_tel {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 134rpx;
+    padding-bottom: 10rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+.submit-phone .input_tel image{
+    width: 36rpx;
+    height: 48rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    /* box-sizing: content-box;
+    padding: 0 10rpx; */
+}
+.submit-phone .input_tel input{
+    font-size: 32rpx;
+    width: 90%;
+}
+.submit-phone .btn_login{
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    bottom: 90rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    color: #fff;
+    background: #404B81;
+    border-radius: 46rpx;
+}
+.submit-phone .btn_login text{
+    font-size: 32rpx;
+}

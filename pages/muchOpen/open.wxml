@@ -1,0 +1,31 @@
+<!--pages/muchOpen/open.wxml-->
+<view class='all-bg-img'>
+    <image src='/pages/icon/bg.png'></image>
+</view>
+<view class='content'>
+    <view class='item'>
+        <view class='left'>
+            <text>楼层</text>
+        </view>
+        <view class='center'>
+            <text>{{selected_floor}}</text>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>区域</text>
+        </view>
+        <view class='center'>
+            <text>{{selected_region}}</text>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='submit'>
+        <text>提交</text>
+    </view>
+</view>

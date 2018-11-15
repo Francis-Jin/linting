@@ -1,0 +1,69 @@
+<!--pages/add_plan/plan.wxml-->
+<!--pages/muchOpen/open.wxml-->
+<view class='all-bg-img'>
+    <image src='/pages/icon/bg.png'></image>
+</view>
+<view class='content'>
+    <view class='item' bindtap='linkSelectedFloor'>
+        <view class='left'>
+            <text>楼层</text>
+        </view>
+        <view class='center'>
+            <text>{{selected_floor}}</text>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='item' bindtap='linkSelectedRegion'>
+        <view class='left'>
+            <text>区域</text>
+        </view>
+        <view class='center'>
+            <text>{{selected_region}}</text>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='item' bindtap='linkSelectedWeek'>
+        <view class='left'>
+            <text>工作日</text>
+        </view>
+        <view class='center'>
+            <text>{{selected_weeked}}</text>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>开灯时间</text>
+        </view>
+        <view class='center'>
+            <picker mode="time" start="06:00" end="23:59" bindchange='selectedOpenTime'>
+                <input placeholder='请选择开灯时间' placeholder-style='color:#DADADC' disabled='disabled' value='{{selected_open_time}}'/>
+            </picker>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>区域</text>
+        </view>
+        <view class='center'>
+            <picker mode="time" start="06:00" end="23:59" bindchange='selectedCloseTime'>
+                <input placeholder='请选择关灯时间'  placeholder-style='color:#DADADC' disabled='disabled' value='{{selected_close_time}}'/>
+            </picker>
+        </view>
+        <view class='right'>
+            <image src='/pages/icon/right.png'></image>
+        </view>
+    </view>
+    <view class='submit'>
+        <text>提交</text>
+    </view>
+</view>
