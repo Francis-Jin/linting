@@ -3,73 +3,146 @@ import * as echarts from '../../ec-canvas/echarts';
 const app = getApp();
 
 function initChart(canvas, width, height) {
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  });
-  canvas.setChart(chart);
+    const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+    });
+    canvas.setChart(chart);
 
-  var option = {
-    backgroundColor: "#ffffff",
-    color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
-    series: [{
-      label: {
-        normal: {
-          fontSize: 14
-        }
-      },
-      type: 'pie',
-      center: ['50%', '50%'],
-      radius: [0, '60%'],
-      data: [{
-        value: 55,
-        name: '北京'
-      }, {
-        value: 20,
-        name: '武汉'
-      }, {
-        value: 10,
-        name: '杭州'
-      }, {
-        value: 20,
-        name: '广州'
-      }, {
-        value: 38,
-        name: '上海'
-      },
-      ],
-      itemStyle: {
-        emphasis: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 2, 2, 0.3)'
-        }
-      }
-    }]
-  };
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            right: 40,
+            bottom: 100
+        },
+        color: ["#D8D8D8", "#404B81"],
+        series: [{
+            name: '开关统计',
+            type: 'pie',
+            center: ["22%", "40%"],
+            radius: ["35%", '50%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: [{
+                    value: 335,
+                    name: '已开灯数   ' + 100 + '个'
+                },
+                {
+                    value: 310,
+                    name: '未开灯数   ' + 100 + '个'
+                },
+            ]
+        }]
+    };
 
-  chart.setOption(option);
-  return chart;
+    chart.setOption(option);
+    return chart;
 }
 
+function InitChart(canvas, width, height) {
+    const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+    });
+    canvas.setChart(chart);
+
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            right: 40,
+            bottom: 100
+        },
+        color: ["#47D0AF", "#FFDB5C", "#FBA087","#404B81"],
+        series: [{
+            name: '区域统计',
+            type: 'pie',
+            center: ["22%", "40%"],
+            radius: ["35%", '50%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: [{
+                    value: 335,
+                    name: '阅览室      ' + 100 + '个'
+                },
+                {
+                    value: 256,
+                    name: '公共区域  ' + 100 + '个'
+                },
+                {
+                    value: 280,
+                    name: '图书室      ' + 100 + '个'
+                },
+                {
+                    value: 134,
+                    name: '厕所        ' + 100 + '个'
+                }
+            ]
+        }]
+    };
+
+    chart.setOption(option);
+    return chart;
+}
 Page({
-  onShareAppMessage: function (res) {
-    return {
-      title: 'ECharts 可以在微信小程序中使用啦！',
-      path: '/pages/index/index',
-      success: function () { },
-      fail: function () { }
-    }
-  },
-  data: {
-    ec: {
-    }
-  },
+    data: {
+        ec: {
 
-  onReady() {
-  },
+        },
+        open_number: 2490,
+        region_number: 690,
+    },
 
-  echartInit (e) {
-    initChart(e.detail.canvas, e.detail.width, e.detail.height);
-  }
+    onReady() {},
+
+    echartInit(e) {
+        initChart(e.detail.canvas, e.detail.width, e.detail.height);
+    },
+    /**
+     * 当前开灯区域统计图
+     */
+    EchartInit(e) {
+        InitChart(e.detail.canvas, e.detail.width, e.detail.height);
+    }
 });

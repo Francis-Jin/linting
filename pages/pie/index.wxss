@@ -1,6 +1,56 @@
 /**index.wxss**/
+.top_content{
+    height: 232rpx;
+    background: #404B81;
+}
+.top_content .title{
+    text-indent: 30rpx;
+    color: #9399B7;
+}
+.top_content .bottom{
+    display: flex;
+    color: #fff;
+}
+.top_content .bottom .init{
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+.top_content .bottom .init:first-child::after{
+    content: "";
+    display: block;
+    position: absolute;
+    right: 1rpx;
+    top: 14rpx;
+    width: 1rpx;
+    height: 190rpx;
+    background: #6671A4;
+    transform: scaleY(.5);
+}
+.top_content .bottom .init .number{
+    margin-top: 40rpx;
+    margin-bottom: 10rpx;
+    font-size: 50rpx;
+}
+.container {
+    width: 100%;
+    height: 480rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+.container .head{
+    height: 100rpx;
+    line-height: 100rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+.container .head image{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 20rpx 0 30rpx;
+    vertical-align: middle
+}
 ec-canvas {
-  width: 100%;
+  width: 50%;
   height: 30%;
 }
 

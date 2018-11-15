@@ -1,5 +1,30 @@
 <!--index.wxml-->
+<view class='top_content'>
+    <view class='title'>
+        <text>领导您好！欢迎访问贵大图书馆照明系统</text>
+    </view>
+    <view class='bottom'>
+        <view class='init'>
+            <view class='number'>{{open_number}}</view>
+            <view>总灯数</view>
+        </view>
+        <view class='init'>
+            <view class='number'>{{region_number}}</view>
+            <view>总灯数</view>
+        </view>
+    </view>
+</view>
 <view class="container">
+    <view class='head'>
+        <image src='/pages/icon/fenzu.png '></image>
+        <text>当前开灯量统计</text>
+    </view>
     <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" bind:init="echartInit"></ec-canvas>
-    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" bind:init="echartInit"></ec-canvas>
+</view>
+<view class="container">
+    <view class='head'>
+        <image src='/pages/icon/fenzu.png '></image>
+        <text>当前开灯区域统计</text>
+    </view>
+    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" bind:init="EchartInit"></ec-canvas>
 </view>
