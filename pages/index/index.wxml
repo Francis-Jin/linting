@@ -49,7 +49,7 @@
                 </view>
             </view>
             <view class='down-more'>
-                <image src='/pages/icon/down.png'></image>
+                <image src='/pages/icon/down1.png'></image>
             </view>
         </view>
     </view>

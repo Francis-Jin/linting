@@ -20,7 +20,6 @@
         <view class='init' wx:key="index" wx:for="{{lists}}">
             <view class='sub_con line' id="{{index}}" bindtap='clickSelected'>
                 <view class='l'>
-                    
                     <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
                     <label class='{{item.checked == true ? "checked" : ""}}'></label>
                 </view>
@@ -63,7 +62,7 @@
                     <text>楼层</text>
                 </view>
                 <view class='center'>
-                    <input placeholder='请选择' placeholder-style='color:#DADADC' value='{{selected_floor}}' />
+                    <input placeholder='请选择' disabled='disabled' placeholder-style='color:#DADADC' value='{{selected_floor}}' />
                 </view>
                 <view class='right'>
                     <image src='/pages/icon/right.png'></image>
@@ -90,7 +89,7 @@
                     <text>区域</text>
                 </view>
                 <view class='center'>
-                    <input placeholder='请选择' placeholder-style='color:#DADADC' value='{{selected_region}}' />
+                    <input placeholder='请选择' disabled='disabled' placeholder-style='color:#DADADC' value='{{selected_region}}' />
                 </view>
                 <view class='right'>
                     <image src='/pages/icon/right.png'></image>

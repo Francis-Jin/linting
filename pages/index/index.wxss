@@ -105,6 +105,6 @@ page{
     padding: 32rpx 0;
 }
 .floor-lists .down-more image{
-    width: 52rpx;
-    height: 30rpx;
+    width: 26rpx;
+    height: 16rpx;
 }

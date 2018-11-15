@@ -27,7 +27,7 @@
     background: #f2f2f2;
 }
 .item .left{
-    width: 150rpx;
+    width: 140rpx;
     text-align: center;
 }
 .item .left text{
@@ -42,6 +42,11 @@
     text-overflow: ellipsis;
 }
 .item .center text{
+    display: inline-block;
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 30rpx;
     color: #333;
 }
