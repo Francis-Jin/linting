@@ -1,4 +1,5 @@
 // pages/login/login.js
+var app = getApp()
 Page({
 
     /**
@@ -7,29 +8,76 @@ Page({
     data: {
         phoneVal: ""
     },
-    blurPhone: function(e) {
-        var phone = e.detail.value;
+
+    bindinputValue: function(e) {
+        this.setData({
+            phoneVal: e.detail.value
+        })
+    },
+
+    /**
+     * 点击提交
+     */
+    submit: function() {
+        var that = this
+        var phone = that.data.phoneVal;
         if (!(/^1[34578]\d{9}$/.test(phone))) {
             wx.showToast({
                 title: '手机号有误',
                 icon: 'success',
                 duration: 2000
             });
-            this.setData({
+            that.setData({
                 phoneVal: ""
             })
+        } else {
+            // 13520255390
+            console.log(that.data.phoneVal);
+            wx.request({
+                url: app.data.baseAPI + app.data.loginURL + that.data.phoneVal,
+                method: 'post',
+                header: {
+                    "X-ACCESS-TOKEN": null
+                },
+                success: res => {
+                    console.log(res);
+                    if (res.data.code == 302) {
+                        wx.showToast({
+                            title: '用户不存在',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                        that.setData({
+                            phoneVal: ""
+                        })
+                    } else if (res.data.code == 200 && res.data.data != null) {
+                        var infoData = res.data.data;
+                        app.data.accessToken = infoData.accessToken;
+
+                        wx.showToast({
+                            title: '登录成功！',
+                            icon: 'success',
+                            duration: 1500
+                        });
+                            if (infoData.useType == 1) {
+                                // wx.redirectTo({
+                                //     url: '/pages/Line_tester/LineTester',
+                                // })
+                            } else if (infoData.useType == 2) {
+                                wx.redirectTo({
+                                    url: '/pages/index/index',
+                                })
+                            } else if (infoData.useType == 3) {
+                                wx.redirectTo({
+                                    url: '/pages/Line_tester/LineTester',
+                                })
+                            }
+                        
+                    }
+                }
+            })
         }
-    },
-    /**
-     * 点击提交
-     */
-    submit:function(){
-        wx.redirectTo({
-            url: '/pages/index/index',
-            success: function(res) {},
-            fail: function(res) {},
-            complete: function(res) {},
-        })
+
     },
     /**
      * 生命周期函数--监听页面加载

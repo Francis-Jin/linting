@@ -9,7 +9,7 @@
     <view class='submit-phone'>
         <view class='input_tel'>
             <image src='/pages/icon/phone_icon.png'></image>
-            <input type='number' bindblur='blurPhone' placeholder='请输入手机号' value='{{phoneVal}}'/>
+            <input type='number' placeholder='请输入手机号' value='{{phoneVal}}' bindinput="bindinputValue"/>
         </view>
         <view class='btn_login' bindtap='submit'>
             <text>提交</text>

@@ -58,7 +58,7 @@
     <!-- 线路信息记录部分 -->
     <view hidden='{{tab_val == 0 ? false : true}}'>
         <view class='content'>
-            <view class='item' data-statu="open" id="floor" bindtap='slectedFloor'>
+            <view class='item' data-statu="open" bindtap='slectedFloor'>
                 <view class='left'>
                     <text>楼层</text>
                 </view>
@@ -74,7 +74,7 @@
                     <text>主控器名称</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' />
+                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' bindinput='inputControl' />
                 </view>
             </view>
             <view class='item'>
@@ -82,18 +82,15 @@
                     <text>线路名称</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' />
+                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' bindinput='inputLine' />
                 </view>
             </view>
             <view class='item' data-statu="open" id="region" bindtap='slectedRegion'>
                 <view class='left'>
                     <text>区域</text>
                 </view>
-                <view class='center'>
-                    <input placeholder='请选择' disabled='disabled' placeholder-style='color:#DADADC' value='{{selected_region}}' />
-                </view>
-                <view class='right'>
-                    <image src='/pages/icon/right.png'></image>
+                <view class='centerInput'>
+                    <input placeholder='请输入区域名称' placeholder-style='color:#DADADC' bindinput='inputRegion' />
                 </view>
             </view>
             <view class='item'>
@@ -101,7 +98,7 @@
                     <text>照明灯数量</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' />
+                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' bindinput='inputLamp' />
                 </view>
             </view>
             <view class='Remarks'>
@@ -109,7 +106,11 @@
                     <text>备注</text>
                 </view>
                 <view class='textarea_input'>
+
+                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250" bindinput='inputRemarks'></textarea>
+
                     <textarea hidden='{{IsShowTextarea?true:false}}' placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea>
+
                     <view class='number'>
                         <text>{{textarea_num}}</text>
                         <text>/250</text>
@@ -165,22 +166,40 @@
 </view>
 
 <!-- 菜单弹出层start -->
-<view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang'></view>
+
+<view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang' catchtouchmove="preventTouchMove"></view>
 <view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
     <view class='menu-title whitebj'>
         <text>{{menuTitle}}</text>
     </view>
     <!-- 不是选择日期显示 -->
     <view class='content whitebj'>
-        <view class='init {{currentData == index ? "active" : ""}}' data-statu="close" wx:for="{{menuValLists}}" bindtap='clickMenuThisInit' data-content='{{item}}' wx:for-index="index" wx:key="index" data-index="{{index}}" id="{{selectId}}">
-            <text>{{item}}</text>
+        <view class='init {{floor_index == index ? "active" : ""}}' wx:for="{{menuValLists}}" wx:key="{{index}}" data-activeindex="{{index}}" data-content='{{item.value}}' data-statu="close" id="{{item.id}}" bindtap='clickMenuThisInit'>
+            <text>{{item.value}}</text>
             <view class='status'>
                 <image src='/pages/icon/selected.png'></image>
             </view>
+
+            <view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang'></view>
+            <view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
+                <view class='menu-title whitebj'>
+                    <text>{{menuTitle}}</text>
+                </view>
+                <!-- 不是选择日期显示 -->
+                <view class='content whitebj'>
+                    <view class='init {{currentData == index ? "active" : ""}}' data-statu="close" wx:for="{{menuValLists}}" bindtap='clickMenuThisInit' data-content='{{item}}' wx:for-index="index" wx:key="index" data-index="{{index}}" id="{{selectId}}">
+                        <text>{{item}}</text>
+                        <view class='status'>
+                            <image src='/pages/icon/selected.png'></image>
+
+                        </view>
+                    </view>
+                </view>
+                <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
+                    <text>取消</text>
+                </view>
+            </view>
         </view>
-    </view>
-    <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
-        <text>取消</text>
     </view>
 </view>
 <!-- 菜单弹出层end -->

@@ -6,32 +6,27 @@ Page({
      * 页面的初始数据
      */
     data: {
-        lists: [{
-            title: "星期一",
-            floor: "一楼",
-            region: "图书馆",
-            open_time: "06:00",
-            close_time: "21:00",
-            checked: false,
-        }, {
-            title: "星期二",
-            floor: "二楼",
-            region: "教室",
-            open_time: "06:00",
-            close_time: "21:00",
-            checked: false,
-        }],
         selected_num: 0,
         all_selected: false,
         tab_val: 0,
-        selected_floor: "",
+
+        selected_floor: "一楼",    //楼层选择 默认值
+        floor_id: "",             // 楼层选择 ID
+        floor_index: 0,          //  默认第一楼是选中状态  
+
+        controlName: '',           //主控制器名称
+        lineName: '',             // 线路
+        inputRegion: '',         //  区域
+        lampNumber: '',         //   灯数量
+        remarksText: '',       //    备注  
+
         selected_region: "",
         textarea_num: 0,
         showBig: true, //点击上传图片查看大图盒子是否显示
         avatarUrl: null,
         menuTitle: "",
         menuValLists: [],
-        IsShowTextarea:false,
+        IsShowTextarea:false,     //底部是否显示备注
     },
     /**
      * 点击测试按钮
@@ -105,7 +100,6 @@ Page({
      * 选择楼层
      */
     slectedFloor: function(e) {
-        console.log(e);
         var that = this;
         var currentStatu = e.currentTarget.dataset.statu;
         that.setData({
@@ -114,9 +108,86 @@ Page({
         that.setData({
             selectId: e.currentTarget.id,
             menuTitle: "选择楼层",
-            menuValLists: ["一楼", "二楼", "三楼", "四楼", "五楼", "六楼", "七楼", "八楼", "九楼", "十楼"],
+            menuValLists: [
+                {
+                    id:1,
+                    value: "一楼"
+                },
+                {
+                    id: 2,
+                    value: "二楼"
+                },
+                {
+                    id: 3,
+                    value: "三楼"
+                },
+                {
+                    id: 4,
+                    value: "四楼"
+                },
+                {
+                    id: 5,
+                    value: "五楼"
+                },
+                {
+                    id: 6,
+                    value: "六楼"
+                },
+                {
+                    id: 7,
+                    value: "七楼"
+                },
+                {
+                    id: 8,
+                    value: "八楼"
+                },
+                {
+                    id: 9,
+                    value: "九楼"
+                },
+                {
+                    id: 10,
+                    value: "十楼"
+                },
+
+            ],
         });
         that.showHideMenu(currentStatu);
+    },
+
+
+    //主控制器名称
+    inputControl: function (e) {
+        this.setData({
+            controlName: e.detail.value
+        })
+    },
+    //线路名称
+    inputLine: function (e) {
+        this.setData({
+            lineName: e.detail.value
+        })
+    },
+    //区域
+    inputRegion: function (e) {
+        this.setData({
+            regionName: e.detail.value
+        })
+    },
+    //照明灯数量
+    inputLamp: function (e) {
+        this.setData({
+            lampNumber: e.detail.value
+        })
+    },
+    //备注
+    inputRemarks: function (e) {
+        // console.log(e);
+        var abc = e.detail.value;
+        // console.log(abc.length);
+        this.setData({
+            remarksText: e.detail.value
+        });
     },
     /**
      * 选择区域
@@ -132,9 +203,10 @@ Page({
             selectId: e.currentTarget.id,
             menuTitle: "选择楼层",
             menuValLists: ["图书馆", "测所"],
+
         });
-        that.showHideMenu(currentStatu);
     },
+    
     /**
      * 点击单选按钮
      */
@@ -200,7 +272,7 @@ Page({
     uploadeImg: function() {
         var that = this;
         wx.chooseImage({
-            count: 6, // 设置最多可以选择的图片张数，默认9,如果我们设置了多张,那么接收时//就不在是单个变量了,
+            count: 10, // 设置最多可以选择的图片张数，默认9,如果我们设置了多张,那么接收时//就不在是单个变量了,
             sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
             sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
             success: function(res) {
@@ -244,38 +316,44 @@ Page({
         })
     },
     /**
-     * 点击菜单列表内容
+     * 点击菜单列表内容  楼层
      */
     clickMenuThisInit: function(e) {
-        console.log(e);
         var that = this;
         var currentStatu = e.target.dataset.statu;
-        var selectedId = e.target.id;
-        console.log(selectedId);
+
         that.setData({
-            currentData: e.target.dataset.index, //标注选中样式
+            floor_index: e.currentTarget.dataset.activeindex,
+            floor_id: e.currentTarget.id,
+            selected_floor: e.currentTarget.dataset.content
         });
-        if (selectedId == "floor") {
-            that.setData({
-                selected_floor: e.target.dataset.content,
-            });
-            setTimeout(function () {
-                that.setData({
-                    IsShowTextarea: false
-                });
-            }, 200);
-        }
-        if (selectedId == "region") {
-            that.setData({
-                selected_region: e.target.dataset.content,
-            });
-            setTimeout(function(){
-                that.setData({
-                    IsShowTextarea: false
-                });
-            },200);
-        }
-        // code....
+
+        // var selectedId = e.target.id;
+        // console.log(selectedId);
+        // that.setData({
+        //     currentData: e.target.dataset.index, //标注选中样式
+        // });
+        // if (selectedId == "floor") {
+        //     that.setData({
+        //         selected_floor: e.target.dataset.content,
+        //     });
+        //     setTimeout(function () {
+        //         that.setData({
+        //             IsShowTextarea: false
+        //         });
+        //     }, 200);
+        // }
+        // if (selectedId == "region") {
+        //     that.setData({
+        //         selected_region: e.target.dataset.content,
+        //     });
+        //     setTimeout(function(){
+        //         that.setData({
+        //             IsShowTextarea: false
+        //         });
+        //     },200);
+        // }
+
         this.setData({
             currentData: "", //标注一个都没选中样式
         });
