@@ -17,13 +17,13 @@ function initChart(canvas, width, height) {
         legend: {
             orient: 'vertical',
             right: 40,
-            bottom: 100
+            bottom: 70
         },
         color: ["#D8D8D8", "#404B81"],
         series: [{
             name: '开关统计',
             type: 'pie',
-            center: ["22%", "40%"],
+            center: ["22%", "60%"],
             radius: ["35%", '50%'],
             avoidLabelOverlap: false,
             label: {
@@ -75,13 +75,13 @@ function InitChart(canvas, width, height) {
         legend: {
             orient: 'vertical',
             right: 40,
-            bottom: 100
+            bottom: 40
         },
         color: ["#47D0AF", "#FFDB5C", "#FBA087","#404B81"],
         series: [{
             name: '区域统计',
             type: 'pie',
-            center: ["22%", "40%"],
+            center: ["22%", "60%"],
             radius: ["35%", '50%'],
             avoidLabelOverlap: false,
             label: {
