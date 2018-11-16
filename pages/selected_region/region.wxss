@@ -28,15 +28,15 @@
     background: #f2f2f2;
 }
 .item .left{
-    width: 160rpx;
-    text-align: center;
+    width: 180rpx;
+    text-indent: 40rpx;
 }
 .item .left text{
     font-size: 30rpx;
     color: #333;
 }
 .item .center{
-    width: 66%;
+    width: 64%;
     text-align: right;
     overflow: hidden;
     white-space: nowrap;

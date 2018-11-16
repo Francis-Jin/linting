@@ -110,24 +110,13 @@ Page({
                 name: "厕所",
                 status: false
             }]
-        }]
+        }],
+        clickDownStatus:false,//点击下拉箭头显示更多状态效果
     },
     /**
      * 点击多开
      */
     muchOpen:function(){
-        // wx.showModal({
-        //     title: '',
-        //     content: '确认打开此区域的照明灯？',
-        //     showCancel: true,
-        //     cancelText: '取消',
-        //     cancelColor: '#666666',
-        //     confirmText: '确认',
-        //     confirmColor: '#404B81',
-        //     success: function(res) {},
-        //     fail: function(res) {},
-        //     complete: function(res) {},
-        // })
         wx.navigateTo({
             url: '/pages/muchOpen/open',
             success: function(res) {},
@@ -139,18 +128,6 @@ Page({
     * 点击多关
     */
     muchClose: function () {
-        // wx.showModal({
-        //     title: '',
-        //     content: '确认关闭此区域的照明灯？',
-        //     showCancel: true,
-        //     cancelText: '取消',
-        //     cancelColor: '#666666',
-        //     confirmText: '确认',
-        //     confirmColor: '#404B81',
-        //     success: function (res) { },
-        //     fail: function (res) { },
-        //     complete: function (res) { },
-        // })
         wx.navigateTo({
             url: '/pages/muchClose/close',
             success: function(res) {},
@@ -173,7 +150,45 @@ Page({
      * 点击单个开关灯
      */
     clickSwitchLight: function(e) {
+        // console.log(e);
+        var status = e.currentTarget.dataset.sta;
+        if(status){
+            wx.showModal({
+                title: '',
+                content: '确定要关闭此区域照明吗？',
+                showCancel: true,
+                cancelText: '取消',
+                cancelColor: '#999',
+                confirmText: '确定',
+                confirmColor: '#404B81',
+                success: function (res) {
+                    // code...
+                },
+            })
+        }else{
+            wx.showModal({
+                title: '',
+                content: '确定要打开此区域照明吗？',
+                showCancel: true,
+                cancelText: '取消',
+                cancelColor: '#999',
+                confirmText: '确定',
+                confirmColor: '#404B81',
+                success: function (res) {
+                    // code...
+                },
+            })
+        }
+    },
+    /**
+     * 点击下拉箭头
+     */
+    cliclDownloadMoreFn:function(e){
         console.log(e);
+        var that = this;
+        that.setData({
+            clickDownStatus:!that.data.clickDownStatus
+        })
     },
     /**
      * 生命周期函数--监听页面加载

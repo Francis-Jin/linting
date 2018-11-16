@@ -22,6 +22,7 @@
                 <view class='l'>
                     <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
                     <label class='{{item.checked == true ? "checked" : ""}}'></label>
+                    <image class='selected_image' hidden='{{item.checked == true ? false : true}}' src='/pages/icon/checked.png'></image>
                 </view>
             </view>
             <view class='sub_con'>
@@ -141,6 +142,7 @@
     <view class='l'>
         <view class='selected_all'>
             <checkbox-group bindchange="checkboxAllChange">
+                <image class='selected_image all_selected_image' hidden='{{all_selected == true ? false : true}}' src='/pages/icon/checked.png'></image>
                 <checkbox class='check all' color="#404B81" value='{{all_selected}}' checked='{{all_selected}}'></checkbox>
                 <label class='{{all_selected == true ? "checked" : ""}}'></label>
                 <text class='all_selected_text'>全选</text>
@@ -153,27 +155,32 @@
         </view>
     </view>
     <view class='r'>
-        <text>删除</text>
+        <view class='r_l init' bindtap='testerFn'>
+            <text>测试</text>
+        </view>
+        <view class='r_r init' bindtap='deleteFn'>
+            <text>提交</text>
+        </view>
     </view>
 </view>
 
 <!-- 菜单弹出层start -->
-    <view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang'></view>
-    <view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
-        <view class='menu-title whitebj'>
-            <text>{{menuTitle}}</text>
-        </view>
-        <!-- 不是选择日期显示 -->
-        <view class='content whitebj'>
-            <view class='init {{currentData == index ? "active" : ""}}' data-statu="close" wx:for="{{menuValLists}}" bindtap='clickMenuThisInit' data-content='{{item}}' wx:for-index="index" wx:key="index" data-index="{{index}}" id="{{selectId}}">
-                <text>{{item}}</text>
-                <view class='status'>
-                    <image src='/pages/icon/selected.png'></image>
-                </view>
+<view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang'></view>
+<view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
+    <view class='menu-title whitebj'>
+        <text>{{menuTitle}}</text>
+    </view>
+    <!-- 不是选择日期显示 -->
+    <view class='content whitebj'>
+        <view class='init {{currentData == index ? "active" : ""}}' data-statu="close" wx:for="{{menuValLists}}" bindtap='clickMenuThisInit' data-content='{{item}}' wx:for-index="index" wx:key="index" data-index="{{index}}" id="{{selectId}}">
+            <text>{{item}}</text>
+            <view class='status'>
+                <image src='/pages/icon/selected.png'></image>
             </view>
         </view>
-        <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
-            <text>取消</text>
-        </view>
     </view>
-    <!-- 菜单弹出层end -->
+    <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
+        <text>取消</text>
+    </view>
+</view>
+<!-- 菜单弹出层end -->

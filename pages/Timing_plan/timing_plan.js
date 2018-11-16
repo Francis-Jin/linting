@@ -60,6 +60,23 @@ Page({
         not_data_txt:"暂无定时计划"
     },
     /**
+     * 点击删除按钮
+     */
+    deleteFn:function(){
+        wx.showModal({
+            title: '',
+            content: '确定要删除吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#999',
+            confirmText: '确定',
+            confirmColor: '#404B81',
+            success: function(res) {
+                // code...
+            },
+        })
+    },
+    /**
      * 点击单选按钮
      */
     clickSelected: function(e) {

@@ -33,6 +33,58 @@ Page({
         menuValLists: [],
     },
     /**
+     * 点击测试按钮
+     */
+    testerFn: function() {
+        wx.showModal({
+            title: '',
+            content: '确定测试所选区域吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#999',
+            confirmText: '确定',
+            confirmColor: '#404B81',
+            success: function(res) {
+                // code...
+            },
+        })
+    },
+    /**
+     * 点击提交按钮
+     */
+    deleteFn: function() {
+        wx.showModal({
+            title: '',
+            content: '确定提交吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#999',
+            confirmText: '确定',
+            confirmColor: '#404B81',
+            success: function(ress) {
+                // code...
+                if (ress.confirm) {
+                    // 进行一次判断，判断选择的是否都测试过了，
+                    // 如果还有没有测试完就有一个提示；
+                    wx.showModal({
+                        title: '',
+                        content: '线路123还未进行测试',
+                        showCancel: true,
+                        cancelText: '取消',
+                        cancelColor: '#999',
+                        confirmText: '确定',
+                        confirmColor: '#404B81',
+                        success: function(ress) {
+                            // code...
+
+                        },
+                    })
+                }
+
+            },
+        })
+    },
+    /**
      * tab选择
      */
     lineRecord: function(e) {

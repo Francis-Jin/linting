@@ -39,7 +39,7 @@
             <text>{{item.title}}</text>
         </view>
         <view class='floor-lists'>
-            <view class='init' wx:key="index" wx:for="{{item.subLists}}" id="{{item.id}}" bindtap='clickSwitchLight'>
+            <view class='init' wx:key="index" wx:for="{{item.subLists}}" id="{{item.id}}" data-sta='{{item.status}}' bindtap='clickSwitchLight'>
                 <view class='icon'>
                     <image wx:if="{{item.status == false}}" src='/pages/icon/not.png'></image>
                     <image wx:if="{{item.status == true}}" src='/pages/icon/yes.png'></image>
@@ -48,7 +48,7 @@
                     <text>{{item.name}}</text>
                 </view>
             </view>
-            <view class='down-more'>
+            <view class='down-more {{clickDownStatus == true ? "active" : ""}}' data-sta="{{clickDownStatus}}" bindtap='cliclDownloadMoreFn'>
                 <image src='/pages/icon/down1.png'></image>
             </view>
         </view>

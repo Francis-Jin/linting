@@ -21,6 +21,36 @@ Page({
             region: "图书馆",
             checked: false,
             openCloseStatus: true,
+        }, {
+            floor: "一楼",
+            region: "图书馆",
+            checked: false,
+            openCloseStatus: true,
+        }, {
+            floor: "一楼",
+            region: "图书馆",
+            checked: false,
+            openCloseStatus: true,
+        }, {
+            floor: "一楼",
+            region: "图书馆",
+            checked: false,
+            openCloseStatus: true,
+        }, {
+            floor: "一楼",
+            region: "图书馆",
+            checked: false,
+            openCloseStatus: true,
+        }, {
+            floor: "一楼",
+            region: "图书馆",
+            checked: false,
+            openCloseStatus: true,
+        }, {
+            floor: "一楼",
+            region: "图书馆",
+            checked: false,
+            openCloseStatus: true,
         }],
         selected_num: 0,
         not_data_txt: "暂无多关区域",
@@ -29,14 +59,52 @@ Page({
      * 点击当前个开关
      */
     switchChange: function(e) {
+        console.log(e);
+        var that = this;
+        var E = e;
         var id = e.target.dataset.id;
-        var lists = this.data.lists;
-        lists.splice(id, 1);
-        this.setData({
-            lists: lists,
-            listsLen: lists.length
+        var lists = that.data.lists;
+        wx.showModal({
+            title: '提示',
+            content: '确认关闭吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#666',
+            confirmText: '确认',
+            confirmColor: '#404B81',
+            success: function(res) {
+                if (res.confirm) {
+                    lists.splice(id, 1);
+                    that.setData({
+                        lists: lists,
+                        listsLen: lists.length
+                    })
+                };
+                if (res.cancel) {
+                    lists[id].openCloseStatus = true;
+                    that.setData({
+                        lists:lists
+                    })
+                }
+            }
         })
-        
+    },
+    /**
+     * 
+     */
+    closeRegionFn:function(){
+        wx.showModal({
+            title: '',
+            content: '确定要关闭此区域照明吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#999',
+            confirmText: '确定',
+            confirmColor: '#404B81',
+            success: function (res) {
+                // code...
+            },
+        })
     },
     /**
      * 点击单选按钮

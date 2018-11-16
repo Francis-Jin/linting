@@ -10,6 +10,7 @@
                     <text class='week'>{{item.title}}</text>
                     <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
                     <label class='{{item.checked == true ? "checked" : ""}}'></label>
+                    <image class='selected_image' hidden='{{item.checked == true ? false : true}}' src='/pages/icon/checked.png'></image>
                 </view>
             </view>
             <view class='sub_con'>
@@ -43,6 +44,7 @@
     <view class='l'>
         <view class='selected_all'>
             <checkbox-group bindchange="checkboxAllChange">
+            <image class='selected_image all_selected_image' hidden='{{all_selected == true ? false : true}}' src='/pages/icon/checked.png'></image>
                 <checkbox class='check all' color="#404B81" value='{{all_selected}}' checked='{{all_selected}}'></checkbox>
                 <label class='{{all_selected == true ? "checked" : ""}}'></label>
                 <text class='all_selected_text'>全选</text>
@@ -54,7 +56,7 @@
             <text>条</text>
         </view>
     </view>
-    <view class='r'>
+    <view class='r' bindtap='deleteFn'>
         <text>删除</text>
     </view>
 </view>
