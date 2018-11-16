@@ -31,6 +31,7 @@ Page({
         avatarUrl: null,
         menuTitle: "",
         menuValLists: [],
+        IsShowTextarea:false,
     },
     /**
      * 点击测试按钮
@@ -108,6 +109,9 @@ Page({
         var that = this;
         var currentStatu = e.currentTarget.dataset.statu;
         that.setData({
+            IsShowTextarea:true
+        })
+        that.setData({
             selectId: e.currentTarget.id,
             menuTitle: "选择楼层",
             menuValLists: ["一楼", "二楼", "三楼", "四楼", "五楼", "六楼", "七楼", "八楼", "九楼", "十楼"],
@@ -120,6 +124,9 @@ Page({
     slectedRegion: function(e) {
         console.log(e);
         var that = this;
+        that.setData({
+            IsShowTextarea: true
+        })
         var currentStatu = e.currentTarget.dataset.statu;
         that.setData({
             selectId: e.currentTarget.id,
@@ -245,18 +252,28 @@ Page({
         var currentStatu = e.target.dataset.statu;
         var selectedId = e.target.id;
         console.log(selectedId);
-        this.setData({
+        that.setData({
             currentData: e.target.dataset.index, //标注选中样式
         });
         if (selectedId == "floor") {
-            this.setData({
+            that.setData({
                 selected_floor: e.target.dataset.content,
             });
+            setTimeout(function () {
+                that.setData({
+                    IsShowTextarea: false
+                });
+            }, 200);
         }
         if (selectedId == "region") {
-            this.setData({
+            that.setData({
                 selected_region: e.target.dataset.content,
             });
+            setTimeout(function(){
+                that.setData({
+                    IsShowTextarea: false
+                });
+            },200);
         }
         // code....
         this.setData({
@@ -269,6 +286,9 @@ Page({
      */
     hideMenusCancel: function(e) {
         var that = this;
+        that.setData({
+            IsShowTextarea: false
+        })
         var currentStatu = e.currentTarget.dataset.statu;
         that.showHideMenu(currentStatu);
     },
@@ -319,8 +339,12 @@ Page({
      * 点击阴影部分隐藏
      */
     clickYinchang: function(e) {
+        var that = this;
         var currentStatu = e.target.dataset.statu;
         this.showHideMenu(currentStatu);
+        that.setData({
+            IsShowTextarea: false
+        })
     },
     /**
      * 生命周期函数--监听页面加载

@@ -109,7 +109,7 @@
                     <text>备注</text>
                 </view>
                 <view class='textarea_input'>
-                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea>
+                    <textarea hidden='{{IsShowTextarea?true:false}}' placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea>
                     <view class='number'>
                         <text>{{textarea_num}}</text>
                         <text>/250</text>
