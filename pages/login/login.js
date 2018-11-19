@@ -24,7 +24,7 @@ Page({
         if (!(/^1[34578]\d{9}$/.test(phone))) {
             wx.showToast({
                 title: '手机号有误',
-                icon: 'success',
+                icon: 'none',
                 duration: 2000
             });
             that.setData({
@@ -59,6 +59,7 @@ Page({
                             icon: 'success',
                             duration: 1500
                         });
+                        setTimeout(function(){
                             if (infoData.useType == 1) {
                                 // wx.redirectTo({
                                 //     url: '/pages/Line_tester/LineTester',
@@ -72,6 +73,8 @@ Page({
                                     url: '/pages/Line_tester/LineTester',
                                 })
                             }
+                        },1000);
+                            
                         
                     }
                 }

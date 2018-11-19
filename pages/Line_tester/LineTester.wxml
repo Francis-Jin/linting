@@ -15,6 +15,89 @@
             <text>记录提交</text>
         </view>
     </view>
+    <!-- 线路信息记录部分 -->
+    <view hidden='{{tab_val == 0 ? false : true}}'>
+        <view class='content'>
+            <view class='item' data-statu="open" bindtap='slectedFloor'>
+                <view class='left'>
+                    <text>楼层</text>
+                </view>
+                <view class='center'>
+                    <input placeholder='请选择' disabled='disabled' placeholder-style='color:#DADADC' value='{{selected_floor}}' />
+                </view>
+                <view class='right'>
+                    <image src='/pages/icon/right.png'></image>
+                </view>
+            </view>
+            <view class='item'>
+                <view class='left'>
+                    <text>主控器名称</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' bindinput='inputControl' />
+                </view>
+            </view>
+            <view class='item'>
+                <view class='left'>
+                    <text>线路名称</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' bindinput='inputLine' />
+                </view>
+            </view>
+            <view class='item' data-statu="open" id="region">
+                <view class='left'>
+                    <text>区域</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入区域名称' placeholder-style='color:#DADADC' bindinput='inputRegion' />
+                </view>
+            </view>
+            <view class='item'>
+                <view class='left'>
+                    <text>照明灯数量</text>
+                </view>
+                <view class='centerInput'>
+                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' bindinput='inputLamp' />
+                </view>
+            </view>
+            <view class='Remarks'>
+                <view class='title'>
+                    <text>备注</text>
+                </view>
+                <view class='textarea_input'>
+
+                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250" bindinput='inputRemarks'></textarea>
+
+                    <!-- <textarea hidden='{{IsShowTextarea?true:false}}' placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea> -->
+
+                    <view class='number'>
+                        <text>{{textLength}}</text>
+                        <text>/250</text>
+                    </view>
+                </view>
+            </view>
+            <view class='uploadImg'>
+                <view class='uploade-img'>
+                    <view class='imgs' wx:key="index" wx:for="{{avatarUrl}}">
+                        <image data-url='{{item}}' bindtap='lookThisImg' mode='aspectFit' src="{{item}}" style='box-sizing:border-box;border:1rpx dotted #f2f2f2;'></image>
+                        <view class='delete' wx:key="index" data-index='{{index}}' bindtap='deleteImg'>x</view>
+                    </view>
+                    <view class='btnUp' bindtap='uploadeImg'>
+                        <image src='/pages/icon/Group.png'></image>
+                        <text>点击上传照片 (最多上传9张)</text>
+                    </view>
+                    <!-- 点击图片后查看大图 -->
+                    <view hidden='{{showBig}}' class='lookBigImg' bindtap='hideThisShow'>
+                        <image mode='aspectFit' src='{{setThisImgUrl}}'></image>
+                    </view>
+                </view>
+            </view>
+            <view class='submit' bindtap='lineSubmit' >
+                <text>提交</text>
+            </view>
+        </view>
+    </view>
     <!-- 记录提交部分 -->
     <view hidden='{{tab_val == 1 ? false : true}}' class='lists'>
         <view class='init' wx:key="index" wx:for="{{lists}}">
@@ -55,90 +138,9 @@
             </view>
         </view>
     </view>
-    <!-- 线路信息记录部分 -->
-    <view hidden='{{tab_val == 0 ? false : true}}'>
-        <view class='content'>
-            <view class='item' data-statu="open" bindtap='slectedFloor'>
-                <view class='left'>
-                    <text>楼层</text>
-                </view>
-                <view class='center'>
-                    <input placeholder='请选择' disabled='disabled' placeholder-style='color:#DADADC' value='{{selected_floor}}' />
-                </view>
-                <view class='right'>
-                    <image src='/pages/icon/right.png'></image>
-                </view>
-            </view>
-            <view class='item'>
-                <view class='left'>
-                    <text>主控器名称</text>
-                </view>
-                <view class='centerInput'>
-                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' bindinput='inputControl' />
-                </view>
-            </view>
-            <view class='item'>
-                <view class='left'>
-                    <text>线路名称</text>
-                </view>
-                <view class='centerInput'>
-                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' bindinput='inputLine' />
-                </view>
-            </view>
-            <view class='item' data-statu="open" id="region" bindtap='slectedRegion'>
-                <view class='left'>
-                    <text>区域</text>
-                </view>
-                <view class='centerInput'>
-                    <input placeholder='请输入区域名称' placeholder-style='color:#DADADC' bindinput='inputRegion' />
-                </view>
-            </view>
-            <view class='item'>
-                <view class='left'>
-                    <text>照明灯数量</text>
-                </view>
-                <view class='centerInput'>
-                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' bindinput='inputLamp' />
-                </view>
-            </view>
-            <view class='Remarks'>
-                <view class='title'>
-                    <text>备注</text>
-                </view>
-                <view class='textarea_input'>
-
-                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250" bindinput='inputRemarks'></textarea>
-
-                    <textarea hidden='{{IsShowTextarea?true:false}}' placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea>
-
-                    <view class='number'>
-                        <text>{{textarea_num}}</text>
-                        <text>/250</text>
-                    </view>
-                </view>
-            </view>
-            <view class='uploadImg'>
-                <view class='uploade-img'>
-                    <view class='imgs' wx:key="index" wx:for="{{avatarUrl}}">
-                        <image data-url='{{item}}' bindtap='lookThisImg' mode='aspectFit' src="{{item}}" style='box-sizing:border-box;border:1rpx dotted #f2f2f2;'></image>
-                        <view class='delete' wx:key="index" data-index='{{index}}' bindtap='deleteImg'>x</view>
-                    </view>
-                    <view class='btnUp' bindtap='uploadeImg'>
-                        <image src='/pages/icon/Group.png'></image>
-                        <text>点击上传照片 (最多上传6张)</text>
-                    </view>
-                    <!-- 点击图片后查看大图 -->
-                    <view hidden='{{showBig}}' class='lookBigImg' bindtap='hideThisShow'>
-                        <image mode='aspectFit' src='{{setThisImgUrl}}'></image>
-                    </view>
-                </view>
-            </view>
-            <view class='submit'>
-                <text>提交</text>
-            </view>
-        </view>
-    </view>
+    
 </view>
+
 <view hidden='{{tab_val == 1 ? false : true}}' class='footer_fixed'>
     <view class='l'>
         <view class='selected_all'>
@@ -165,41 +167,26 @@
     </view>
 </view>
 
-<!-- 菜单弹出层start -->
-
+<!-- 菜单弹出层start  选择楼层 -->
 <view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang' catchtouchmove="preventTouchMove"></view>
 <view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
     <view class='menu-title whitebj'>
-        <text>{{menuTitle}}</text>
+        <text>选择楼层</text>
     </view>
     <!-- 不是选择日期显示 -->
     <view class='content whitebj'>
-        <view class='init {{floor_index == index ? "active" : ""}}' wx:for="{{menuValLists}}" wx:key="{{index}}" data-activeindex="{{index}}" data-content='{{item.value}}' data-statu="close" id="{{item.id}}" bindtap='clickMenuThisInit'>
+        <view class='init {{floor_index == index ? "active" : ""}}' 
+         wx:for="{{menuValLists}}" wx:key="{{index}}" id="{{item.id}}"
+         data-activeindex="{{index}}" data-content='{{item.value}}' data-statu="close" 
+         bindtap='clickMenuThisInit'>
             <text>{{item.value}}</text>
             <view class='status'>
                 <image src='/pages/icon/selected.png'></image>
             </view>
-
-            <view class='menus-wrap' data-statu="close" wx:if="{{showModalStatus}}" bindtap='clickYinchang'></view>
-            <view class='menus' animation="{{animationData}}" wx:if="{{showModalStatus}}">
-                <view class='menu-title whitebj'>
-                    <text>{{menuTitle}}</text>
-                </view>
-                <!-- 不是选择日期显示 -->
-                <view class='content whitebj'>
-                    <view class='init {{currentData == index ? "active" : ""}}' data-statu="close" wx:for="{{menuValLists}}" bindtap='clickMenuThisInit' data-content='{{item}}' wx:for-index="index" wx:key="index" data-index="{{index}}" id="{{selectId}}">
-                        <text>{{item}}</text>
-                        <view class='status'>
-                            <image src='/pages/icon/selected.png'></image>
-
-                        </view>
-                    </view>
-                </view>
-                <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
-                    <text>取消</text>
-                </view>
-            </view>
         </view>
     </view>
+    <view class='menu-cancel whitebj' data-statu="close" bindtap='hideMenusCancel'>
+                    <text>取消</text>
+                </view>
 </view>
 <!-- 菜单弹出层end -->

@@ -1,32 +1,83 @@
-// pages/Line_tester/LineTester.js
-// pages/Timing_plan/timing_plan.js
+var app = getApp();
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        selected_num: 0,
-        all_selected: false,
-        tab_val: 0,
+        tab_val: 0,  // 顶部tab切换
 
-        selected_floor: "一楼",    //楼层选择 默认值
-        floor_id: "",             // 楼层选择 ID
-        floor_index: 0,          //  默认第一楼是选中状态  
+        //线路信息记录
+        menuValLists: [{
+                id: 1,
+                value: "一楼"
+            },
+            {
+                id: 2,
+                value: "二楼"
+            },
+            {
+                id: 3,
+                value: "三楼"
+            },
+            {
+                id: 4,
+                value: "四楼"
+            },
+            {
+                id: 5,
+                value: "五楼"
+            },
+            {
+                id: 6,
+                value: "六楼"
+            },
+            {
+                id: 7,
+                value: "七楼"
+            },
+            {
+                id: 8,
+                value: "八楼"
+            },
+            {
+                id: 9,
+                value: "九楼"
+            },
+            {
+                id: 10,
+                value: "十楼"
+            },
 
-        controlName: '',           //主控制器名称
-        lineName: '',             // 线路
-        inputRegion: '',         //  区域
-        lampNumber: '',         //   灯数量
-        remarksText: '',       //    备注  
-
+        ],
+        selected_floor: "一楼",   //楼层选择 默认值
+        floor_id: 1,            // 楼层选择 ID
+        floor_index: 0,        //  默认第一楼是选中状态  
+        controlName: '',     //主控制器名称
+        lineName: '',       // 线路
+        regionName: '',    //  区域
+        lampNumber: '',   //   灯数量
+        remarksText: '', //    备注  
+        textLength: 0,  //     备注 字长
         selected_region: "",
-        textarea_num: 0,
-        showBig: true, //点击上传图片查看大图盒子是否显示
-        avatarUrl: null,
-        menuTitle: "",
-        menuValLists: [],
-        IsShowTextarea:false,     //底部是否显示备注
+        showBig: true,           //点击上传图片查看大图盒子是否显示
+        avatarUrl: null,        // 存放图片的变量
+        IsShowTextarea: false, //  底部是否显示备注
+
+        //记录提交
+        lists: [
+            {
+                floor: '二楼',
+                open_time: '07.00',
+                region: '厕所',
+                close_time: '21.00',
+                title: '标题1'
+            }
+        ],
+        selected_num: 0,       //选择了几条
+        all_selected: false,  // 全选的状态
+
     },
     /**
      * 点击测试按钮
@@ -80,6 +131,7 @@ Page({
             },
         })
     },
+
     /**
      * tab选择
      */
@@ -103,110 +155,185 @@ Page({
         var that = this;
         var currentStatu = e.currentTarget.dataset.statu;
         that.setData({
-            IsShowTextarea:true
+            IsShowTextarea: true
         })
-        that.setData({
-            selectId: e.currentTarget.id,
-            menuTitle: "选择楼层",
-            menuValLists: [
-                {
-                    id:1,
-                    value: "一楼"
-                },
-                {
-                    id: 2,
-                    value: "二楼"
-                },
-                {
-                    id: 3,
-                    value: "三楼"
-                },
-                {
-                    id: 4,
-                    value: "四楼"
-                },
-                {
-                    id: 5,
-                    value: "五楼"
-                },
-                {
-                    id: 6,
-                    value: "六楼"
-                },
-                {
-                    id: 7,
-                    value: "七楼"
-                },
-                {
-                    id: 8,
-                    value: "八楼"
-                },
-                {
-                    id: 9,
-                    value: "九楼"
-                },
-                {
-                    id: 10,
-                    value: "十楼"
-                },
-
-            ],
-        });
         that.showHideMenu(currentStatu);
     },
 
 
     //主控制器名称
-    inputControl: function (e) {
+    inputControl: function(e) {
         this.setData({
             controlName: e.detail.value
         })
     },
     //线路名称
-    inputLine: function (e) {
+    inputLine: function(e) {
         this.setData({
             lineName: e.detail.value
         })
     },
     //区域
-    inputRegion: function (e) {
+    inputRegion: function(e) {
         this.setData({
             regionName: e.detail.value
         })
     },
     //照明灯数量
-    inputLamp: function (e) {
+    inputLamp: function(e) {
         this.setData({
             lampNumber: e.detail.value
         })
     },
     //备注
-    inputRemarks: function (e) {
-        // console.log(e);
+    inputRemarks: function(e) {
         var abc = e.detail.value;
-        // console.log(abc.length);
         this.setData({
-            remarksText: e.detail.value
+            remarksText: e.detail.value,
+            textLength: abc.length
         });
     },
     /**
-     * 选择区域
-     */
-    slectedRegion: function(e) {
-        console.log(e);
+    * 上传图片
+    */
+    uploadeImg: function () {
         var that = this;
-        that.setData({
-            IsShowTextarea: true
-        })
-        var currentStatu = e.currentTarget.dataset.statu;
-        that.setData({
-            selectId: e.currentTarget.id,
-            menuTitle: "选择楼层",
-            menuValLists: ["图书馆", "测所"],
-
+        wx.chooseImage({
+            count: 10, // 设置最多可以选择的图片张数，默认9,如果我们设置了多张,那么接收时//就不在是单个变量了,
+            sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+            success: function (res) {
+                // 获取成功,将获取到的地址赋值给临时变量
+                var tempFilePaths = res.tempFilePaths;
+                console.log(tempFilePaths);
+                that.setData({
+                    //将临时变量赋值给已经在data中定义好的变量
+                    avatarUrl: tempFilePaths
+                });
+            },
         });
     },
-    
+    /**
+     * 删除上传的图片
+     */
+    deleteImg: function (e) {
+        var that = this;
+        var _index = e.target.dataset.index;
+        var avatarUrl = that.data.avatarUrl.splice(_index, 1);
+        this.setData({
+            avatarUrl: that.data.avatarUrl
+        });
+    },
+    /**
+     * 显示查看上传的大图
+     */
+    lookThisImg: function (e) {
+        var that = this;
+        this.setData({
+            showBig: !that.data.showBig,
+            setThisImgUrl: e.currentTarget.dataset.url
+        })
+    },
+    /**
+     * 隐藏查看上传的大图
+     */
+    hideThisShow: function () {
+        var that = this;
+        that.setData({
+            showBig: !that.data.showBig
+        })
+    },
+
+    /**
+     * 提交
+     */
+    lineSubmit: function() {
+        var that = this;
+        var fid = that.data.floor_id;
+        var cName = that.data.controlName;
+        var lName = that.data.lineName;
+        var rName = that.data.regionName;
+        var lpName = that.data.lampNumber;
+        var rText = that.data.remarksText;
+
+        var data = that.data.avatarUrl;
+        if (data){
+            var imgData = data.join(',');
+        };
+        if (fid == '' || fid == null || fid == undefined) {
+            wx.showToast({
+                title: '请选择楼层',
+                duration: 1500,
+                icon: 'none'
+            })
+
+        } else if (fid == '' || fid == null || fid == undefined) {
+            wx.showToast({
+                title: '请输入主控制器名称',
+                duration: 1500,
+                icon: 'none'
+            })
+
+        } else if (fid == '' || fid == null || fid == undefined) {
+            wx.showToast({
+                title: '请输入线路名称',
+                duration: 1500,
+                icon: 'none'
+            })
+
+        } else if (fid == '' || fid == null || fid == undefined) {
+            wx.showToast({
+                title: '请输入区域名称',
+                duration: 1500,
+                icon: 'none'
+            })
+
+        } else if (fid == '' || fid == null || fid == undefined) {
+            wx.showToast({
+                title: '请输入灯的数量',
+                duration: 1500,
+                icon: 'none'
+            })
+
+        };
+
+        wx.request({
+            url: app.data.baseAPI + 'project/save',
+            method: 'post',
+            data: {
+                floor: fid,
+                controller: cName,
+                circuit: lName,
+                area: rName,
+                lampNum: lpName,
+                remark: rText,
+                circuitImg: imgData
+            },
+            header: {
+                "X-ACCESS-TOKEN": null
+            },
+            success: res => {
+                console.log(res);
+                // if (res.data.code == 401) {
+                //     wx.showToast({
+                //         title: '登录失效',
+                //         icon: 'none',
+                //         duration: 1500
+                //     });
+                //     setTimeout(function() {
+                //         wx.redirectTo({
+                //             url: '/pages/login/login',
+                //         })
+                //     },1000);
+                    
+                // } else if (res.data.code == 200 && res.data.data != null) {
+                    
+                // }
+            }
+        })
+
+        
+    },
     /**
      * 点击单选按钮
      */
@@ -266,98 +393,50 @@ Page({
             selected_num: len
         });
     },
-    /**
-     * 上传图片
-     */
-    uploadeImg: function() {
-        var that = this;
-        wx.chooseImage({
-            count: 10, // 设置最多可以选择的图片张数，默认9,如果我们设置了多张,那么接收时//就不在是单个变量了,
-            sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
-            success: function(res) {
-                // 获取成功,将获取到的地址赋值给临时变量
-                var tempFilePaths = res.tempFilePaths;
-                that.setData({
-                    //将临时变量赋值给已经在data中定义好的变量
-                    avatarUrl: tempFilePaths
-                });
-            },
-        });
-    },
-    /**
-     * 删除上传的图片
-     */
-    deleteImg: function(e) {
-        var that = this;
-        var _index = e.target.dataset.index;
-        var avatarUrl = that.data.avatarUrl.splice(_index, 1);
-        this.setData({
-            avatarUrl: that.data.avatarUrl
-        });
-    },
-    /**
-     * 显示查看上传的大图
-     */
-    lookThisImg: function(e) {
-        var that = this;
-        this.setData({
-            showBig: !that.data.showBig,
-            setThisImgUrl: e.currentTarget.dataset.url
-        })
-    },
-    /**
-     * 隐藏查看上传的大图
-     */
-    hideThisShow: function() {
-        var that = this;
-        that.setData({
-            showBig: !that.data.showBig
-        })
-    },
+   
     /**
      * 点击菜单列表内容  楼层
      */
     clickMenuThisInit: function(e) {
         var that = this;
         var currentStatu = e.target.dataset.statu;
-
         that.setData({
             floor_index: e.currentTarget.dataset.activeindex,
             floor_id: e.currentTarget.id,
             selected_floor: e.currentTarget.dataset.content
         });
+        that.showHideMenu(currentStatu); //关闭
 
-        // var selectedId = e.target.id;
-        // console.log(selectedId);
-        // that.setData({
-        //     currentData: e.target.dataset.index, //标注选中样式
-        // });
-        // if (selectedId == "floor") {
-        //     that.setData({
-        //         selected_floor: e.target.dataset.content,
-        //     });
-        //     setTimeout(function () {
-        //         that.setData({
-        //             IsShowTextarea: false
-        //         });
-        //     }, 200);
-        // }
-        // if (selectedId == "region") {
-        //     that.setData({
-        //         selected_region: e.target.dataset.content,
-        //     });
-        //     setTimeout(function(){
-        //         that.setData({
-        //             IsShowTextarea: false
-        //         });
-        //     },200);
-        // }
+
+        var selectedId = e.target.id;
+        console.log(selectedId);
+        that.setData({
+            currentData: e.target.dataset.index, //标注选中样式
+        });
+        if (selectedId == "floor") {
+            that.setData({
+                selected_floor: e.target.dataset.content,
+            });
+            setTimeout(function () {
+                that.setData({
+                    IsShowTextarea: false
+                });
+            }, 200);
+        }
+        if (selectedId == "region") {
+            that.setData({
+                selected_region: e.target.dataset.content,
+            });
+            setTimeout(function(){
+                that.setData({
+                    IsShowTextarea: false
+                });
+            },200);
+        }
 
         this.setData({
             currentData: "", //标注一个都没选中样式
         });
-        that.showHideMenu(currentStatu);
     },
     /**
      * 点击取消按钮隐藏菜单
@@ -428,7 +507,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        // wx.request({
+        //     url: '',
+        // })
     },
 
     /**
