@@ -79,61 +79,9 @@ Page({
         all_selected: false,  // 全选的状态
 
     },
+    
     /**
-     * 点击测试按钮
-     */
-    testerFn: function() {
-        wx.showModal({
-            title: '',
-            content: '确定测试所选区域吗？',
-            showCancel: true,
-            cancelText: '取消',
-            cancelColor: '#999',
-            confirmText: '确定',
-            confirmColor: '#404B81',
-            success: function(res) {
-                // code...
-            },
-        })
-    },
-    /**
-     * 点击提交按钮
-     */
-    deleteFn: function() {
-        wx.showModal({
-            title: '',
-            content: '确定提交吗？',
-            showCancel: true,
-            cancelText: '取消',
-            cancelColor: '#999',
-            confirmText: '确定',
-            confirmColor: '#404B81',
-            success: function(ress) {
-                // code...
-                if (ress.confirm) {
-                    // 进行一次判断，判断选择的是否都测试过了，
-                    // 如果还有没有测试完就有一个提示；
-                    wx.showModal({
-                        title: '',
-                        content: '线路123还未进行测试',
-                        showCancel: true,
-                        cancelText: '取消',
-                        cancelColor: '#999',
-                        confirmText: '确定',
-                        confirmColor: '#404B81',
-                        success: function(ress) {
-                            // code...
-
-                        },
-                    })
-                }
-
-            },
-        })
-    },
-
-    /**
-     * tab选择
+     * tab选择 线路信息记录
      */
     lineRecord: function(e) {
         this.setData({
@@ -141,14 +89,19 @@ Page({
         })
     },
     /**
-     * tab选择
+     * tab选择  记录提交
      */
     submitRecord: function(e) {
+        // this.getRecord();
         this.setData({
             tab_val: 1
         })
     },
+
+    
     /**
+     * 线路信息记录
+     * 
      * 选择楼层
      */
     slectedFloor: function(e) {
@@ -265,40 +218,44 @@ Page({
                 title: '请选择楼层',
                 duration: 1500,
                 icon: 'none'
-            })
+            });
+            return false;
 
-        } else if (fid == '' || fid == null || fid == undefined) {
+        } else if (cName == '' || cName == null || cName == undefined) {
             wx.showToast({
                 title: '请输入主控制器名称',
                 duration: 1500,
                 icon: 'none'
-            })
+            });
+            return false;
 
-        } else if (fid == '' || fid == null || fid == undefined) {
+        } else if (lName == '' || lName == null || lName == undefined) {
             wx.showToast({
                 title: '请输入线路名称',
                 duration: 1500,
                 icon: 'none'
             })
 
-        } else if (fid == '' || fid == null || fid == undefined) {
+        } else if (rName == '' || rName == null || rName == undefined) {
             wx.showToast({
                 title: '请输入区域名称',
                 duration: 1500,
                 icon: 'none'
-            })
+            });
+            return false;
 
-        } else if (fid == '' || fid == null || fid == undefined) {
+        } else if (lpName == '' || lpName == null || lpName == undefined) {
             wx.showToast({
                 title: '请输入灯的数量',
                 duration: 1500,
                 icon: 'none'
-            })
+            });
+            return false;
 
         };
 
         wx.request({
-            url: app.data.baseAPI + 'project/save',
+            url: app.data.baseAPI + 'project/save?delFlag='+0,
             method: 'post',
             data: {
                 floor: fid,
@@ -310,30 +267,43 @@ Page({
                 circuitImg: imgData
             },
             header: {
-                "X-ACCESS-TOKEN": null
+                "X-ACCESS-TOKEN": app.data.accessToken,
+                "content-type": "application/x-www-form-urlencoded"
             },
             success: res => {
                 console.log(res);
-                // if (res.data.code == 401) {
-                //     wx.showToast({
-                //         title: '登录失效',
-                //         icon: 'none',
-                //         duration: 1500
-                //     });
-                //     setTimeout(function() {
-                //         wx.redirectTo({
-                //             url: '/pages/login/login',
-                //         })
-                //     },1000);
+                if (res.data.code == 401) {
+                    wx.showToast({
+                        title: '登录失效',
+                        icon: 'none',
+                        duration: 1500
+                    });
+                    setTimeout(function() {
+                        wx.redirectTo({
+                            url: '/pages/login/login',
+                        })
+                    },1000);
                     
-                // } else if (res.data.code == 200 && res.data.data != null) {
+                } else if (res.data.code == 300) {
+                    wx.showToast({
+                        title: '该条线路已存在',
+                        icon: 'none',
+                        duration: 2000
+                    });
                     
-                // }
+                }else if (res.data.code == 200) {
+                    wx.showToast({
+                        title: '提交成功',
+                        icon: 'success',
+                        duration: 2000
+                    });
+                }
             }
         })
 
         
     },
+
     /**
      * 点击单选按钮
      */
@@ -393,7 +363,58 @@ Page({
             selected_num: len
         });
     },
-   
+    /**
+      * 点击测试按钮
+      */
+    testerFn: function () {
+        wx.showModal({
+            title: '',
+            content: '确定测试所选区域吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#999',
+            confirmText: '确定',
+            confirmColor: '#404B81',
+            success: function (res) {
+                // code...
+            },
+        })
+    },
+    /**
+     * 点击提交按钮
+     */
+    deleteFn: function () {
+        wx.showModal({
+            title: '',
+            content: '确定提交吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#999',
+            confirmText: '确定',
+            confirmColor: '#404B81',
+            success: function (ress) {
+                // code...
+                if (ress.confirm) {
+                    // 进行一次判断，判断选择的是否都测试过了，
+                    // 如果还有没有测试完就有一个提示；
+                    wx.showModal({
+                        title: '',
+                        content: '线路123还未进行测试',
+                        showCancel: true,
+                        cancelText: '取消',
+                        cancelColor: '#999',
+                        confirmText: '确定',
+                        confirmColor: '#404B81',
+                        success: function (ress) {
+                            // code...
+
+                        },
+                    })
+                }
+
+            },
+        })
+    },
     /**
      * 点击菜单列表内容  楼层
      */
@@ -507,9 +528,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        // wx.request({
-        //     url: '',
-        // })
     },
 
     /**

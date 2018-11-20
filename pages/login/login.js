@@ -50,7 +50,7 @@ Page({
                         that.setData({
                             phoneVal: ""
                         })
-                    } else if (res.data.code == 200 && res.data.data != null) {
+                    } else if (res.data.code == 200) {
                         var infoData = res.data.data;
                         app.data.accessToken = infoData.accessToken;
 
