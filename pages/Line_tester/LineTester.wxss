@@ -172,6 +172,7 @@ label.checked {
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 1000;
     height: 110rpx;
     line-height: 110rpx;
     width: 100%;

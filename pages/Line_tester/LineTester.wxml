@@ -34,7 +34,7 @@
                     <text>主控器名称</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' bindinput='inputControl' />
+                    <input placeholder='请输入主控器名称' placeholder-style='color:#DADADC' value='{{controlName}}' bindinput='inputControl' />
                 </view>
             </view>
             <view class='item'>
@@ -42,7 +42,7 @@
                     <text>线路名称</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' bindinput='inputLine' />
+                    <input placeholder='请输入线路名称' placeholder-style='color:#DADADC' value='{{lineName}}' bindinput='inputLine' />
                 </view>
             </view>
             <view class='item' data-statu="open" id="region">
@@ -50,7 +50,7 @@
                     <text>区域</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入区域名称' placeholder-style='color:#DADADC' bindinput='inputRegion' />
+                    <input placeholder='请输入区域名称' placeholder-style='color:#DADADC' value='{{regionName}}' bindinput='inputRegion' />
                 </view>
             </view>
             <view class='item'>
@@ -58,7 +58,7 @@
                     <text>照明灯数量</text>
                 </view>
                 <view class='centerInput'>
-                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' bindinput='inputLamp' />
+                    <input placeholder='请输入输量' placeholder-style='color:#DADADC' value='{{lampNumber}}' bindinput='inputLamp' />
                 </view>
             </view>
             <view class='Remarks'>
@@ -67,9 +67,7 @@
                 </view>
                 <view class='textarea_input'>
 
-                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250" bindinput='inputRemarks'></textarea>
-
-                    <!-- <textarea hidden='{{IsShowTextarea?true:false}}' placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250"></textarea> -->
+                    <textarea placeholder='请输入备注' placeholder-style='color:#DBDADD' maxlength="250" value='{{remarksText}}' bindinput='inputRemarks'></textarea>
 
                     <view class='number'>
                         <text>{{textLength}}</text>
@@ -101,7 +99,7 @@
     <!-- 记录提交部分 -->
     <view hidden='{{tab_val == 1 ? false : true}}' class='lists'>
         <view class='init' wx:key="index" wx:for="{{lists}}">
-            <view class='sub_con line' id="{{index}}" bindtap='clickSelected'>
+            <view class='sub_con line' id="{{item.id}}" data-index='{{index}}' bindtap='clickSelected'>
                 <view class='l'>
                     <checkbox class='check' color="#404B81" value='{{index}}' checked="{{item.checked}}"></checkbox>
                     <label class='{{item.checked == true ? "checked" : ""}}'></label>
@@ -114,26 +112,26 @@
                     <text>{{item.floor}}</text>
                 </view>
                 <view class='r'>
-                    <text>开灯时间：</text>
-                    <text>{{item.open_time}}</text>
+                    <text>主控制器名称：</text>
+                    <text>{{item.controller}}</text>
                 </view>
             </view>
             <view class='sub_con'>
                 <view class='l'>
                     <text>区域：</text>
-                    <text>{{item.region}}</text>
+                    <text>{{item.area}}</text>
                 </view>
                 <view class='r'>
-                    <text>关灯时间：</text>
-                    <text>{{item.close_time}}</text>
+                    <text>线路名称：</text>
+                    <text>{{item.circuit}}</text>
                 </view>
             </view>
             <view class='sub_con bottom_bj'>
                 <view class='l'>
-                    <text class='week'>{{item.title}}</text>
+                    <text class='week'>测试</text>
                 </view>
                 <view class='r'>
-                    <switch color='#404B81'></switch>
+                    <switch data-singleid='{{item.id}}' color='#404B81' bindchange="switchChange" ></switch>
                 </view>
             </view>
         </view>
@@ -159,7 +157,7 @@
     </view>
     <view class='r'>
         <view class='r_l init' bindtap='testerFn'>
-            <text>测试</text>
+            <!-- <text>测试</text> -->
         </view>
         <view class='r_r init' bindtap='deleteFn'>
             <text>提交</text>

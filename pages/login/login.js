@@ -16,7 +16,7 @@ Page({
     },
 
     /**
-     * 点击提交
+     * 点击提交      13520255390
      */
     submit: function() {
         var that = this
@@ -31,8 +31,6 @@ Page({
                 phoneVal: ""
             })
         } else {
-            // 13520255390
-            console.log(that.data.phoneVal);
             wx.request({
                 url: app.data.baseAPI + app.data.loginURL + that.data.phoneVal,
                 method: 'post',
@@ -40,7 +38,6 @@ Page({
                     "X-ACCESS-TOKEN": null
                 },
                 success: res => {
-                    console.log(res);
                     if (res.data.code == 302) {
                         wx.showToast({
                             title: '用户不存在',
@@ -59,11 +56,12 @@ Page({
                             icon: 'success',
                             duration: 1500
                         });
-                        setTimeout(function(){
+
+                        setTimeout(function() {
                             if (infoData.useType == 1) {
-                                // wx.redirectTo({
-                                //     url: '/pages/Line_tester/LineTester',
-                                // })
+                                wx.redirectTo({
+                                    url: 'pages/pie/index',
+                                })
                             } else if (infoData.useType == 2) {
                                 wx.redirectTo({
                                     url: '/pages/index/index',
@@ -73,9 +71,8 @@ Page({
                                     url: '/pages/Line_tester/LineTester',
                                 })
                             }
-                        },1000);
-                            
-                        
+                        }, 1000);
+
                     }
                 }
             })
